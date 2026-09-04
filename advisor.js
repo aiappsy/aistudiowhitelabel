@@ -1,5 +1,5 @@
 // ============================================================================
-// EXPERT AI WHITELABEL ADVISOR ENGINE
+// EXPERT AI WHITELABEL ADVISOR ENGINE (Bilingual: English & Norwegian)
 // Persona: Always positive, encouraging, deeply knowledgeable on all 7 apps,
 // market opportunities, monetization math, and BizBox whitelabel tiers.
 // Pricing Policy: Always explains that exact pricing depends on the chosen tier 
@@ -7,12 +7,13 @@
 // ============================================================================
 
 (function () {
-  const KNOWLEDGE = {
+  let advisorLang = localStorage.getItem('ai_showcase_lang') || 'en';
+
+  const KNOWLEDGE_EN = {
     apps: {
       hubzzoo: {
         name: "Hubzzoo",
         tagline: "Autonomous Sales Partner & CRM for SMBs",
-        url: "https://hubzzoo.ai.studio",
         market: "Contractors, plumbers, electricians, marketing consultants, and SMB service providers who lose 60%+ of sales simply because they are too busy on-site to reply to leads immediately.",
         whitelabelPotential: "Enormous recurring B2B retention! Agencies charge $49-$149/mo per client. At just 40 tradesmen clients, that generates ~$3,500/mo in pure recurring revenue with virtually zero churn because it directly wins them jobs.",
         keyFeatures: "60-second mobile quote creator, multi-channel auto follow-ups across WhatsApp/SMS/Email, and direct accounting sync with Tripletex and Fiken.",
@@ -21,16 +22,14 @@
       maxmotion: {
         name: "MaxMotion AI",
         tagline: "Multi-Model Generative Video Production Studio",
-        url: "https://maxmotion.ai.studio",
         market: "E-commerce brands, creative ad agencies, TikTok/Reels marketing shops, and content creators needing high-volume commercial video without studio costs.",
-        whitelabelPotential: "Video is the fastest-growing digital asset class in 2025/2026. Whitelabel operators can bundle this as a proprietary video generation portal charging $99-$299/mo per seat or offering high-margin credits.",
+        whitelabelPotential: "Video is the fastest-growing digital asset class. Whitelabel operators can bundle this as a proprietary video generation portal charging $99-$299/mo per seat or offering high-margin credits.",
         keyFeatures: "Unified prompt orchestration across Wan 2.1, Kling 1.5 Pro, Minimax, and Seedance 2.0 with prompt enhancement and shot sequencing.",
         encouragement: "You are stepping into a multi-billion dollar generative video market. Having an all-in-one studio with all 4 top models gives you an incredible competitive moat over single-model tools!"
       },
       mediabunny: {
         name: "MediaBunny",
         tagline: "AI Media, Audio & Video Processing Suite",
-        url: "https://mediabunny.ai.studio",
         market: "Podcasters, video editors, social media agencies, and digital creators needing instant media preparation without cloud lag or expensive desktop suites.",
         whitelabelPotential: "Massive margin advantage! Because background removal and audio normalization execute on-device using WebAssembly, your cloud compute server cost is virtually zero, meaning near 100% gross profit margins for operators.",
         keyFeatures: "Client-side WASM background removal, EBU R128 audio normalization, CRF intelligent video compression, and BunnyBot automation assistant.",
@@ -39,7 +38,6 @@
       subsentry: {
         name: "SubSentry",
         tagline: "Subscription Watchdog & Dark Pattern Shield",
-        url: "https://subsentry.ai.studio",
         market: "Freelancers, remote workers, SMB finance teams, and modern consumers struggling with creeping software subscription costs and deceptive cancellation traps.",
         whitelabelPotential: "High viral appeal! Consumer & B2B finance tools have exceptional organic word-of-mouth. Position it as an executive financial perk or agency cost-reduction service.",
         keyFeatures: "Bank webhook transaction monitoring, renewal countdown alerts, 1-click legal cancellation scripts, and dark-pattern friction bypass.",
@@ -48,7 +46,6 @@
       appsave: {
         name: "AppSave",
         tagline: "'Honey' for SaaS & AI Tooling Discounts",
-        url: "https://appsave.ai.studio",
         market: "Bootstrappers, startup founders, AI engineers, and agencies who spend thousands every month on SaaS stacks and want verified active discount codes.",
         whitelabelPotential: "Dual monetization stream: monetize both monthly premium platform access AND lucrative affiliate commission kickbacks from major SaaS directories!",
         keyFeatures: "Chrome Manifest V3 browser extension for checkout auto-fill, verified crowdsourced deal engine, and personalized stack coupon alerts.",
@@ -57,7 +54,6 @@
       upworkz: {
         name: "Upworkz",
         tagline: "Autonomous Upwork Proposal Architect & Deal Closer",
-        url: "https://upworkz.ai.studio",
         market: "Top-tier freelancers, development agencies, copywriters, and consulting teams fighting to win high-budget freelance contracts on Upwork and freelance marketplaces.",
         whitelabelPotential: "High willingness-to-pay! A freelancer winning just one additional $3,000 project will gladly pay $99/mo for Upworkz all year round.",
         keyFeatures: "Gemini 2.5 proposal analysis, 220-character hook optimization, automatic gotcha question auditing, and portfolio attachment matcher.",
@@ -66,7 +62,6 @@
       manus: {
         name: "Manus AI Studio",
         tagline: "Autonomous Generalist Action Agent & Studio",
-        url: "https://manus.ai.studio",
         market: "Venture-backed startups, analysts, software teams, and executive operators seeking autonomous agents that do not just chat, but actually execute multi-step computer tasks.",
         whitelabelPotential: "Premium enterprise pricing power! Autonomous agents command $199-$999/mo enterprise contracts when packaged as an autonomous research or workflow assistant.",
         keyFeatures: "Autonomous web research, headless browser navigation, isolated MicroVM code execution, and persistent memory across sessions.",
@@ -75,7 +70,68 @@
     }
   };
 
-  const POSITIVE_OPENERS = [
+  const KNOWLEDGE_NO = {
+    apps: {
+      hubzzoo: {
+        name: "Hubzzoo",
+        tagline: "Autonom salgsassistent & CRM for håndverkere og SMB",
+        market: "Håndverkere, snekkere, rørleggere, elektrikere og konsulenter som taper 60 %+ av oppdragene rett og slett fordi de er opptatt ute i felt og svarer for sent.",
+        whitelabelPotential: "Ekstremt høy kundelojalitet! Norske byråer kan ta 690 – 1 490 kr/mnd per kunde. Med kun 40 lokale bedriftskunder gir det over 35 000 kr i faste månedlige inntekter (MRR).",
+        keyFeatures: "60-sekunders mobilt pristilbud, automatiske påminnelser på SMS/e-post/WhatsApp og toveis integrasjon mot Fiken og Tripletex.",
+        encouragement: "Hubzzoo er et av de enkleste SaaS-produktene å selge i Norge, fordi det direkte skaffer kunden nye oppdrag fra dag én!"
+      },
+      maxmotion: {
+        name: "MaxMotion AI",
+        tagline: "Multi-modell generativt videostudio",
+        market: "Markedsførere, nettbutikker, innholdsskapere og reklamebyråer som trenger store volum av høykvalitets produkt- og annonsevideoer uten dyre filmsett.",
+        whitelabelPotential: "Video er det raskest voksende medieformatet. Som operatør kan du tilby et eget videostudio for 990 – 2 490 kr/mnd per kunde eller selge videokreditter med solide marginer.",
+        keyFeatures: "Multi-modell orkestrering over Wan 2.1, Kling 1.5 Pro og Minimax, kinematisk kamerastyring og automatisk bilde-til-video.",
+        encouragement: "Du går rett inn i et eksploderende marked. Å kunne tilby 3 av verdens råeste videomodeller i ett verktøy gir deg et massivt forsprang!"
+      },
+      mediabunny: {
+        name: "MediaBunny",
+        tagline: "Lynraskt nettleserbasert medie- og lydstudio",
+        market: "Podkastere, videoredigerere, mediebyråer og innholdsprodusenter som trenger umiddelbar klargjøring av filer uten ventetid eller dyre desktop-programmer.",
+        whitelabelPotential: "Nesten 100 % bruttofortjeneste! Fordi all tung bilde- og lydbehandling skjer direkte på brukerens maskin via WebAssembly, har du tilnærmet null kroner i server- og skyutgifter.",
+        keyFeatures: "Lokal WASM bakgrunnsfjerning, EBU R128 kringkastingsstandard lydnormalisering, CRF videokomprimering og BunnyBot AI-assistent.",
+        encouragement: "Kostnadseffektiviteten i MediaBunny er helt unik i SaaS-verdenen. Hver eneste abonnementskrone går rett i lomma på operatøren!"
+      },
+      subsentry: {
+        name: "SubSentry",
+        tagline: "Abonnementsvakt og forbrukerskjold",
+        market: "Frilansere, privatpersoner og bedrifter som mister oversikten over løpende abonnementskostnader og sliter med sleipe oppsigelsesfeller.",
+        whitelabelPotential: "Høy viralitet og folkelig appell! Perfekt som medlemsfordel eller abonnementstjeneste til 79 – 149 kr/mnd med minimal churn.",
+        keyFeatures: "Automatisk abonnementsdetektiv, fornyelsesvarsler, 1-klikks juridiske oppsigelsesbrev og omgåelse av skjulte oppsigelsesmenyer.",
+        encouragement: "Folk elsker verktøy som direkte sparer dem penger! Å vise kunden at SubSentry sparte dem for 1 500 kr i unødvendige trekk gjør salget lekende lett."
+      },
+      appsave: {
+        name: "AppSave",
+        tagline: "'Honey' for SaaS og AI-programvare",
+        market: "Gründere, utviklere, studenter og bedrifter som bruker tusenvis av kroner på programvare og verktøy hver måned.",
+        whitelabelPotential: "Dobbel inntektsstrøm: Ta betalt for VIP-tilgang til eksklusive koder, samtidig som du mottar opptil 30 % affiliate-kickbacks på kjøpene som gjøres!",
+        keyFeatures: "Chrome Manifest V3 utvidelse for automatisk kodesjekk i kassen, verifisert rabattdatabase og AI-testing av gyldige koder.",
+        encouragement: "AppSave har den råeste organiske veksteffekten. Brukerne sparer penger med ett klikk og tipser umiddelbart kolleger og venner!"
+      },
+      upworkz: {
+        name: "Upworkz",
+        tagline: "Autonom tilbudsarkitekt for frilansere",
+        market: "Dyktige frilansere, konsulenter og spesialistbyråer som kjemper om høyt betalte oppdrag på Upwork og globale plattformer.",
+        whitelabelPotential: "Enorm betalingsvilje! En frilanser som lander et oppdrag til 30 000 kr betaler gladelig 490 – 990 kr/mnd for Upworkz hele året.",
+        keyFeatures: "Gemini 2.5 resonnering, optimalisering av de første 220 tegnene (kroken) og automatisk avsløring av oppdragsgivers kontrollspørsmål.",
+        encouragement: "Å vinne oppdrag handler om sekunder og spisskompetanse. Upworkz gjør at frilanseren fremstår som den ubestridte eksperten hver gang!"
+      },
+      manus: {
+        name: "Manus AI Studio",
+        tagline: "Autonom generalist- og handlingsagent",
+        market: "Vekstselskaper, analyseselskaper og ledere som trenger en digital kollega som faktisk utfører komplekse data- og web-oppgaver selvstendig.",
+        whitelabelPotential: "Enterprise-prising: Bedriftskunder betaler gjerne 2 500 – 10 000 kr/mnd for en autonom agent som sparer dem for hundrevis av arbeidstimer.",
+        keyFeatures: "Flerstegs web-research, hodeløs nettlesernavigasjon, isolerte MicroVM-kjøremiljøer og vedvarende minne.",
+        encouragement: "Autonome agenter er fremtidens programvare. Å tilby dette under din egen merkevare plasserer deg helt i forkant av teknologiskiftet!"
+      }
+    }
+  };
+
+  const POSITIVE_OPENERS_EN = [
     "That is a brilliant question! ",
     "I love where your head is at! ",
     "What a fantastic strategic angle! ",
@@ -83,11 +139,12 @@
     "Awesome insight! Let's break down the tremendous potential: "
   ];
 
-  const ENCOURAGING_CLOSERS = [
-    "\n\nYou are in an amazing position to capitalize on this! Would you like me to open the Whitelabel Inquiry form for you so we can tailor a proposal to your exact goals?",
-    "\n\nThe timing for this market could not be better. Which licensing model feels like the right match for your goals?",
-    "\n\nI have zero doubt that with the right target audience, this can be a powerhouse revenue generator! Want to discuss custom workflows or specific features?",
-    "\n\nEvery great SaaS empire starts with a high-leverage product like this. Let me know what questions you have next!"
+  const POSITIVE_OPENERS_NO = [
+    "Det er et glimrende spørsmål! ",
+    "Fantastisk strategisk tankegang! ",
+    "Her treffer du en utrolig spennende markedsmulighet! ",
+    "Veldig godt tenkt! La oss se på det enorme potensialet: ",
+    "Herlig initiativ! Dette er en kjempesjanse for den rette operatøren: "
   ];
 
   function pickRandom(arr) {
@@ -96,180 +153,281 @@
 
   function generateAdvisorResponse(query) {
     const q = query.toLowerCase();
+    const isNo = advisorLang === 'no';
+    const K = isNo ? KNOWLEDGE_NO : KNOWLEDGE_EN;
+    const openers = isNo ? POSITIVE_OPENERS_NO : POSITIVE_OPENERS_EN;
 
-    // Specific Price & Cost Queries (Explicit Guideline Response)
-    if (q.includes("price") || q.includes("pricing") || q.includes("cost") || q.includes("how much") || q.includes("fee") || q.includes("rate") || q.includes("quote") || q.includes("charge") || q.includes("skill") || q.includes("technical") || q.includes("support")) {
-      return pickRandom(POSITIVE_OPENERS) + "When it comes to pricing, **it will depend on what tier you choose and if there is any custom work required, so it needs to be discussed together!**\n\n" +
-        "Here is the best part — **you need absolutely NO technical ability, coding skills, or experience.** We take care of everything behind the scenes, including all technical support, cloud hosting, databases, and AI model evolution!\n\n" +
-        "🎁 **What is ALWAYS Included in Every Whitelabel Package**:\n" +
-        "• **100% Whitelabel Branding**: Your logo, branding, and identity.\n" +
-        "• **Your Custom Domain**: Fully configured on your chosen domain (e.g. app.yourcompany.com) with SSL.\n" +
-        "• **Dedicated Custom Hours**: Extra custom development hours are always included to personalize workflows, copywriting, or settings for your launch.\n" +
-        "• **Behind-The-Scenes Tech Management**: Full cloud hosting, 24/7 technical support, security, and edge deployments are 100% handled for you.\n\n" +
-        "💡 **Add-Ons at Very Reasonable Prices**:\n" +
-        "If you ever want extra custom integrations, special industry connections, or tailored features down the line, add-ons are available at very reasonable and accessible prices!\n\n" +
-        "Would you like me to open the **Whitelabel Licensing Request form** so we can discuss the ideal tier and custom hours for your launch?";
+    // Pricing & Technical Ability Questions
+    if (q.includes("pris") || q.includes("koster") || q.includes("kostnad") || q.includes("price") || q.includes("cost") || q.includes("how much") || q.includes("fee") || q.includes("rate") || q.includes("quote") || q.includes("teknisk") || q.includes("koding") || q.includes("skill") || q.includes("support")) {
+      if (isNo) {
+        return pickRandom(openers) + "Når det gjelder pris og lisensiering, **vil det avhenge av hvilken modell du velger og om du trenger noe skreddersøm eller spesielle integrasjoner, så dette tar vi en prat om sammen!**\n\n" +
+          "Og her er det aller beste: **Du trenger overhodet INGEN teknisk kompetanse, kodeferdigheter eller SaaS-erfaring.** Vi tar oss av 100 % bak kulissene — inkludert skydrift, databaser, 24/7 teknisk support og kontinuerlige AI-oppgraderinger!\n\n" +
+          "🎁 **Dette er ALLTID inkludert i alle whitelabel-pakker**:\n" +
+          "• **100 % Whitelabel**: Din egen logo, dine farger og din profil.\n" +
+          "• **Eget domene**: Kjører ferdig oppsatt på ditt eget domene (f.eks. app.dittbyra.no) med SSL.\n" +
+          "• **Dedikerte konsulenttimer**: Egne utvikler- og bistandstimer er alltid inkludert for å tilpasse tekst, branding og oppsett til din lansering.\n" +
+          "• **Full teknisk drift**: Serverdrift, sikkerhet og AI-motorer administreres av oss.\n\n" +
+          "💡 **Tilleggsmoduler til svært rimelige priser**:\n" +
+          "Skulle du ønske spesialbygde integrasjoner mot andre systemer eller unike moduler på sikt, er tilleggsfunksjoner tilgjengelig til svært forutsigbare og rimelige priser.\n\n" +
+          "Vil du at jeg skal åpne **lisens- og forespørselsskjemaet** for deg nå, så kan vi se på et oppsett tilpasset dine mål?";
+      } else {
+        return pickRandom(openers) + "When it comes to pricing, **it will depend on what tier you choose and if there is any custom work required, so it needs to be discussed together!**\n\n" +
+          "Here is the best part — **you need absolutely NO technical ability, coding skills, or experience.** We take care of everything behind the scenes, including all technical support, cloud hosting, databases, and AI model evolution!\n\n" +
+          "🎁 **What is ALWAYS Included in Every Whitelabel Package**:\n" +
+          "• **100% Whitelabel Branding**: Your logo, branding, and identity.\n" +
+          "• **Your Custom Domain**: Fully configured on your chosen domain (e.g. app.yourcompany.com) with SSL.\n" +
+          "• **Dedicated Custom Hours**: Extra custom development hours are always included to personalize workflows, copywriting, or settings for your launch.\n" +
+          "• **Behind-The-Scenes Tech Management**: Full cloud hosting, 24/7 technical support, security, and edge deployments are 100% handled for you.\n\n" +
+          "💡 **Add-Ons at Very Reasonable Prices**:\n" +
+          "If you ever want extra custom integrations, special industry connections, or tailored features down the line, add-ons are available at very reasonable and accessible prices!\n\n" +
+          "Would you like me to open the **Whitelabel Licensing Request form** so we can discuss the ideal tier and custom hours for your launch?";
+      }
     }
 
-    // Specific App Queries
-    if (q.includes("hubzzoo") || q.includes("hubzoo") || q.includes("crm") || q.includes("sales") || q.includes("trades")) {
-      const a = KNOWLEDGE.apps.hubzzoo;
-      return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** is a total game-changer for service businesses and trades!\n\n" +
-        "🎯 **Market Opportunity**: " + a.market + "\n\n" +
-        "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
-        "⚡ **Core Highlights**: " + a.keyFeatures + "\n\n" +
-        "💡 *Why you'll succeed*: " + a.encouragement +
-        pickRandom(ENCOURAGING_CLOSERS);
+    // Hubzzoo
+    if (q.includes("hubzzoo") || q.includes("hubzoo") || q.includes("crm") || q.includes("salg") || q.includes("sales") || q.includes("håndverk") || q.includes("fiken") || q.includes("tripletex") || q.includes("quote")) {
+      const a = K.apps.hubzzoo;
+      if (isNo) {
+        return pickRandom(openers) + "**" + a.name + "** er en fantastisk løsning for håndverkere og servicenæringen!\n\n" +
+          "🎯 **Markedsmulighet**: " + a.market + "\n\n" +
+          "💰 **Inntjeningspotensial**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Kjernefordeler**: " + a.keyFeatures + "\n\n" +
+          "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
+          "Vil du at jeg skal åpne lisensskjemaet for Hubzzoo?";
+      } else {
+        return pickRandom(openers) + "**" + a.name + "** is a total game-changer for service businesses and trades!\n\n" +
+          "🎯 **Market Opportunity**: " + a.market + "\n\n" +
+          "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Core Highlights**: " + a.keyFeatures + "\n\n" +
+          "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
+          "Would you like me to open the inquiry form for Hubzzoo?";
+      }
     }
 
-    if (q.includes("maxmotion") || q.includes("video") || q.includes("wan") || q.includes("kling") || q.includes("minimax") || q.includes("seedance")) {
-      const a = KNOWLEDGE.apps.maxmotion;
-      return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** places you right at the crest of the generative video revolution!\n\n" +
-        "🎯 **Target Market**: " + a.market + "\n\n" +
-        "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
-        "⚡ **Multi-Model Edge**: " + a.keyFeatures + "\n\n" +
-        "💡 *Why you'll succeed*: " + a.encouragement +
-        pickRandom(ENCOURAGING_CLOSERS);
+    // MaxMotion
+    if (q.includes("maxmotion") || q.includes("video") || q.includes("wan") || q.includes("kling") || q.includes("minimax")) {
+      const a = K.apps.maxmotion;
+      if (isNo) {
+        return pickRandom(openers) + "**" + a.name + "** plasserer deg midt i smørøyet for generativ video!\n\n" +
+          "🎯 **Målgruppe**: " + a.market + "\n\n" +
+          "💰 **Inntjeningspotensial**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Teknisk forsprang**: " + a.keyFeatures + "\n\n" +
+          "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
+          "Vil du se nærmere på forretningsmodellen for MaxMotion AI?";
+      } else {
+        return pickRandom(openers) + "**" + a.name + "** places you right at the crest of the generative video revolution!\n\n" +
+          "🎯 **Target Market**: " + a.market + "\n\n" +
+          "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Multi-Model Edge**: " + a.keyFeatures + "\n\n" +
+          "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
+          "Would you like to explore the licensing model for MaxMotion AI?";
+      }
     }
 
-    if (q.includes("mediabunny") || q.includes("audio") || q.includes("media") || q.includes("wasm") || q.includes("background") || q.includes("bunny")) {
-      const a = KNOWLEDGE.apps.mediabunny;
-      return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** is an absolute marvel of modern web engineering!\n\n" +
-        "🎯 **Target Audience**: " + a.market + "\n\n" +
-        "💰 **Operator Margins**: " + a.whitelabelPotential + "\n\n" +
-        "⚡ **Key Tech**: " + a.keyFeatures + "\n\n" +
-        "💡 *Why you'll succeed*: " + a.encouragement +
-        pickRandom(ENCOURAGING_CLOSERS);
+    // MediaBunny
+    if (q.includes("mediabunny") || q.includes("audio") || q.includes("lyd") || q.includes("wasm") || q.includes("bakgrunn") || q.includes("bunny")) {
+      const a = K.apps.mediabunny;
+      if (isNo) {
+        return pickRandom(openers) + "**" + a.name + "** er et teknologisk mesterverk innen nettleserprosessering!\n\n" +
+          "🎯 **Målgruppe**: " + a.market + "\n\n" +
+          "💰 **Operatørmarginer**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Kjerneteknologi**: " + a.keyFeatures + "\n\n" +
+          "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
+          "Skal vi ta en prat om hvordan du kan lansere MediaBunny som ditt eget verktøy?";
+      } else {
+        return pickRandom(openers) + "**" + a.name + "** is an absolute marvel of modern web engineering!\n\n" +
+          "🎯 **Target Audience**: " + a.market + "\n\n" +
+          "💰 **Operator Margins**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Key Tech**: " + a.keyFeatures + "\n\n" +
+          "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
+          "Would you like to discuss launching MediaBunny under your brand?";
+      }
     }
 
-    if (q.includes("subsentry") || q.includes("subscription") || q.includes("cancel") || q.includes("watchdog")) {
-      const a = KNOWLEDGE.apps.subsentry;
-      return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** solves one of the most relatable pain points in the modern economy!\n\n" +
-        "🎯 **Market Demand**: " + a.market + "\n\n" +
-        "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
-        "⚡ **Key Capabilities**: " + a.keyFeatures + "\n\n" +
-        "💡 *Why you'll succeed*: " + a.encouragement +
-        pickRandom(ENCOURAGING_CLOSERS);
+    // SubSentry
+    if (q.includes("subsentry") || q.includes("abonnement") || q.includes("subscription") || q.includes("cancel") || q.includes("oppsig")) {
+      const a = K.apps.subsentry;
+      if (isNo) {
+        return pickRandom(openers) + "**" + a.name + "** løser et av de mest irriterende hverdagsproblemene for folk og bedrifter!\n\n" +
+          "🎯 **Markedsbehov**: " + a.market + "\n\n" +
+          "💰 **Operatørpotensial**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Nøkkelfunksjoner**: " + a.keyFeatures + "\n\n" +
+          "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
+          "Vil du ta en kikk på whitelabel-prospektet for SubSentry?";
+      } else {
+        return pickRandom(openers) + "**" + a.name + "** solves one of the most relatable pain points in the modern economy!\n\n" +
+          "🎯 **Market Demand**: " + a.market + "\n\n" +
+          "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Key Capabilities**: " + a.keyFeatures + "\n\n" +
+          "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
+          "Would you like to review the licensing prospectus for SubSentry?";
+      }
     }
 
-    if (q.includes("appsave") || q.includes("discount") || q.includes("coupon") || q.includes("honey") || q.includes("extension")) {
-      const a = KNOWLEDGE.apps.appsave;
-      return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** is engineered for viral, high-velocity adoption!\n\n" +
-        "🎯 **Target Audience**: " + a.market + "\n\n" +
-        "💰 **Revenue Model**: " + a.whitelabelPotential + "\n\n" +
-        "⚡ **Key Features**: " + a.keyFeatures + "\n\n" +
-        "💡 *Why you'll succeed*: " + a.encouragement +
-        pickRandom(ENCOURAGING_CLOSERS);
+    // AppSave
+    if (q.includes("appsave") || q.includes("rabatt") || q.includes("discount") || q.includes("coupon") || q.includes("honey") || q.includes("extension")) {
+      const a = K.apps.appsave;
+      if (isNo) {
+        return pickRandom(openers) + "**" + a.name + "** er konstruert for lynrask og viral vekst!\n\n" +
+          "🎯 **Målgruppe**: " + a.market + "\n\n" +
+          "💰 **Inntektsmodell**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Kjernefordeler**: " + a.keyFeatures + "\n\n" +
+          "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
+          "Ønsker du mer informasjon om å drifte AppSave som en merkevare?";
+      } else {
+        return pickRandom(openers) + "**" + a.name + "** is engineered for viral, high-velocity adoption!\n\n" +
+          "🎯 **Target Audience**: " + a.market + "\n\n" +
+          "💰 **Revenue Model**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Key Features**: " + a.keyFeatures + "\n\n" +
+          "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
+          "Would you like more details on operating AppSave as your brand?";
+      }
     }
 
-    if (q.includes("upwork") || q.includes("proposal") || q.includes("freelanc") || q.includes("closer")) {
-      const a = KNOWLEDGE.apps.upworkz;
-      return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** is the ultimate secret weapon for high-ticket deal making!\n\n" +
-        "🎯 **Target Market**: " + a.market + "\n\n" +
-        "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
-        "⚡ **Winning Edge**: " + a.keyFeatures + "\n\n" +
-        "💡 *Why you'll succeed*: " + a.encouragement +
-        pickRandom(ENCOURAGING_CLOSERS);
+    // Upworkz
+    if (q.includes("upwork") || q.includes("tilbud") || q.includes("søknad") || q.includes("proposal") || q.includes("freelanc")) {
+      const a = K.apps.upworkz;
+      if (isNo) {
+        return pickRandom(openers) + "**" + a.name + "** er det ultimate hemmelige våpenet for å lande store kontrakter!\n\n" +
+          "🎯 **Målgruppe**: " + a.market + "\n\n" +
+          "💰 **Inntjeningspotensial**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Konkurransefortrinn**: " + a.keyFeatures + "\n\n" +
+          "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
+          "Skal vi se på hvordan du kan lansere Upworkz mot frilansere og konsulenter?";
+      } else {
+        return pickRandom(openers) + "**" + a.name + "** is the ultimate secret weapon for high-ticket deal making!\n\n" +
+          "🎯 **Target Market**: " + a.market + "\n\n" +
+          "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Winning Edge**: " + a.keyFeatures + "\n\n" +
+          "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
+          "Shall we look at launching Upworkz to freelancers and consultants?";
+      }
     }
 
-    if (q.includes("manus") || q.includes("agent") || q.includes("autonomous") || q.includes("action")) {
-      const a = KNOWLEDGE.apps.manus;
-      return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** puts you at the absolute forefront of enterprise autonomous AI!\n\n" +
-        "🎯 **Target Market**: " + a.market + "\n\n" +
-        "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
-        "⚡ **Cutting-Edge Tech**: " + a.keyFeatures + "\n\n" +
-        "💡 *Why you'll succeed*: " + a.encouragement +
-        pickRandom(ENCOURAGING_CLOSERS);
+    // Manus
+    if (q.includes("manus") || q.includes("agent") || q.includes("autonom") || q.includes("handling")) {
+      const a = K.apps.manus;
+      if (isNo) {
+        return pickRandom(openers) + "**" + a.name + "** setter deg helt i tet på autonome AI-handlingsagenter!\n\n" +
+          "🎯 **Målgruppe**: " + a.market + "\n\n" +
+          "💰 **Bedriftspotensial**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Banebrytende teknologi**: " + a.keyFeatures + "\n\n" +
+          "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
+          "Vil du ta en titt på bedriftslisensene for Manus AI Studio?";
+      } else {
+        return pickRandom(openers) + "**" + a.name + "** puts you at the absolute forefront of enterprise autonomous AI!\n\n" +
+          "🎯 **Target Market**: " + a.market + "\n\n" +
+          "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
+          "⚡ **Cutting-Edge Tech**: " + a.keyFeatures + "\n\n" +
+          "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
+          "Would you like to explore enterprise licensing for Manus AI Studio?";
+      }
     }
 
-    // Whitelabel Tiers & Models
-    if (q.includes("tier") || q.includes("license") || q.includes("model") || q.includes("lease") || q.includes("buyout") || q.includes("turnkey")) {
-      return pickRandom(POSITIVE_OPENERS) + "The **BizBox Whitelabel Framework** was specifically designed to give operators maximum flexibility and exceptional return on investment!\n\n" +
-        "🌟 **1. Turnkey Whitelabel**:\nLaunch your branded SaaS in 48 hours. Keep 100% of end-user MRR while we handle servers, AI compute, and maintenance!\n\n" +
-        "🚀 **2. Lease-to-Own License**:\nBootstrapper-friendly with **70% of every monthly lease credited toward full ownership**! Validate product-market fit while building equity.\n\n" +
-        "👑 **3. Master Buyout & Source Code IP**:\nComplete GitHub repository transfer, zero future platform fees, and infinite sub-licensing rights worldwide!\n\n" +
-        "Please note that final pricing depends on the tier chosen and any custom work required, so it is best discussed together. Which model aligns best with your growth strategy?";
+    // Default High-Energy Advisor Guide
+    if (isNo) {
+      return pickRandom(openers) + "Jeg er din dedikerte AI Whitelabel-rådgiver, og jeg er her for å hjelpe deg i gang med en lønnsom programvarebedrift!\n\n" +
+        "Vi har 7 produksjonstestede AI-plattformer klare til utrulling under din merkevare:\n" +
+        "• **Hubzzoo** — Salgsassistent for håndverkere (60s tilbud på mobilen & Fiken/Tripletex)\n" +
+        "• **MaxMotion AI** — Multi-modell generativt videostudio\n" +
+        "• **MediaBunny** — Klientside medie- og lydsuite med nær 100 % fortjeneste\n" +
+        "• **SubSentry** — Abonnementsvakt og 1-klikks oppsigelse\n" +
+        "• **AppSave** — 'Honey' for SaaS-rabatter og affiliate-inntekter\n" +
+        "• **Upworkz** — AI-tilbudsarkitekt for store frilansoppdrag\n" +
+        "• **Manus AI Studio** — Autonom datamaskinagent for bedrifter\n\n" +
+        "Husk at du trenger **null tekniske forkunnskaper** — vi ordner all hosting, support og eget domene. Hvilken bransje eller kundegruppe ønsker du å satse på?";
+    } else {
+      return pickRandom(openers) + "I am your dedicated AI Whitelabel Advisor, and I am thrilled to help you build an extraordinary software business!\n\n" +
+        "We have 7 battle-tested AI platforms ready for your brand:\n" +
+        "• **Hubzzoo** — SMB Sales Agent & 60s Quotes\n" +
+        "• **MaxMotion AI** — Multi-Model Generative Video Studio\n" +
+        "• **MediaBunny** — Zero-cloud-cost on-device media suite\n" +
+        "• **SubSentry** — Subscription watchdog & cancellation shield\n" +
+        "• **AppSave** — Honey-style SaaS discount extension\n" +
+        "• **Upworkz** — AI proposal closing architect\n" +
+        "• **Manus AI Studio** — Autonomous action agent\n\n" +
+        "Remember: you need **zero technical knowledge** — we take care of all servers, tech support, custom domain, and included development hours. What audience would you love to target?";
     }
-
-    // General Market & Earning Potential
-    if (q.includes("market") || q.includes("money") || q.includes("revenue") || q.includes("mrr") || q.includes("potential") || q.includes("earn") || q.includes("margin")) {
-      return pickRandom(POSITIVE_OPENERS) + "The AI SaaS whitelabel market is experiencing unprecedented demand! Operators who license ready-to-scale platforms skip 6-12 months of risky, expensive development and go straight to cash flow.\n\n" +
-        "📊 **Illustrative Market Math**:\n" +
-        "• **50 Hubzzoo clients** @ $79/mo = **$3,950 MRR** ($47k ARR)\n" +
-        "• **35 MaxMotion video creators** @ $149/mo = **$5,215 MRR** ($62k ARR)\n" +
-        "• **100 Upworkz freelancers** @ $49/mo = **$4,900 MRR** ($58k ARR)\n\n" +
-        "Because BizBox maintains the tech stack and continuous AI upgrades, your operational overhead stays microscopic. What audience or client base do you currently work with?";
-    }
-
-    // Default High-Energy Encouraging Guide
-    return pickRandom(POSITIVE_OPENERS) + "I am your dedicated AI Whitelabel Advisor, and I am thrilled to help you build an extraordinary software business!\n\n" +
-      "We have 7 battle-tested AI platforms ready for your brand:\n" +
-      "• **Hubzzoo** — SMB Sales Agent & 60s Quotes\n" +
-      "• **MaxMotion AI** — Multi-Model Generative Video Studio\n" +
-      "• **MediaBunny** — Zero-cloud-cost on-device media suite\n" +
-      "• **SubSentry** — Subscription watchdog & cancellation shield\n" +
-      "• **AppSave** — Honey-style SaaS discount extension\n" +
-      "• **Upworkz** — AI proposal closing architect\n" +
-      "• **Manus AI Studio** — Autonomous action agent\n\n" +
-      "Tell me: are you looking to add a product to an existing agency, launch a new brand, or acquire full source code IP?";
   }
 
   // Setup UI Widget
   function initAdvisorUI() {
-    // 1. Floating Action Button
-    const fab = document.createElement('button');
-    fab.className = 'advisor-floating-btn';
-    fab.id = 'advisor-fab-trigger';
+    let fab = document.getElementById('advisor-fab-trigger');
+    if (!fab) {
+      fab = document.createElement('button');
+      fab.className = 'advisor-floating-btn';
+      fab.id = 'advisor-fab-trigger';
+      document.body.appendChild(fab);
+    }
+    updateFabText();
+
+    let chatWin = document.getElementById('advisor-chat-window');
+    if (!chatWin) {
+      chatWin = document.createElement('div');
+      chatWin.className = 'advisor-chat-window';
+      chatWin.id = 'advisor-chat-window';
+      document.body.appendChild(chatWin);
+    }
+    renderChatWindowContent(chatWin);
+
+    window.updateAdvisorLanguage = function (newLang) {
+      advisorLang = newLang;
+      updateFabText();
+      renderChatWindowContent(chatWin);
+    };
+  }
+
+  function updateFabText() {
+    const fab = document.getElementById('advisor-fab-trigger');
+    if (!fab) return;
+    const isNo = advisorLang === 'no';
     fab.innerHTML = `
       <span class="advisor-badge-pulse">✨</span>
-      <span>AI Whitelabel Advisor</span>
+      <span>${isNo ? 'AI Whitelabel-Rådgiver' : 'AI Whitelabel Advisor'}</span>
     `;
-    document.body.appendChild(fab);
+  }
 
-    // 2. Chat Window
-    const chatWin = document.createElement('div');
-    chatWin.className = 'advisor-chat-window';
-    chatWin.id = 'advisor-chat-window';
+  function renderChatWindowContent(chatWin) {
+    const isNo = advisorLang === 'no';
     chatWin.innerHTML = `
       <div class="advisor-chat-header">
         <div class="advisor-header-info">
           <div class="advisor-avatar">🤖</div>
           <div class="advisor-title-text">
-            <h4>Whitelabel Growth Advisor</h4>
-            <p>Always Online · Expert AI Guidance</p>
+            <h4>${isNo ? 'Whitelabel Vekstrådgiver' : 'Whitelabel Growth Advisor'}</h4>
+            <p>${isNo ? 'Alltid påkoblet · Ekspert på SaaS' : 'Always Online · Expert AI Guidance'}</p>
           </div>
         </div>
-        <button class="advisor-close-btn" id="advisor-close-btn" title="Minimize Advisor">✕</button>
+        <button class="advisor-close-btn" id="advisor-close-btn" title="Lukk">✕</button>
       </div>
 
       <div class="advisor-chat-messages" id="advisor-messages-box">
         <div class="advisor-msg agent">
           <div class="advisor-bubble">
-            <p><strong>Welcome! I'm thrilled you're exploring our portfolio. 🚀</strong></p>
-            <p>I am trained on all 7 of our SaaS platforms, the BizBox licensing models, and monetization strategies for agencies and operators.</p>
-            <p>How can I help you discover the perfect software business to launch today?</p>
+            <p><strong>${isNo ? 'Velkommen! Så gøy at du sjekker ut porteføljen vår. 🚀' : 'Welcome! I\'m thrilled you\'re exploring our portfolio. 🚀'}</strong></p>
+            <p>${isNo ? 'Jeg kjenner alle de 7 SaaS-appene, lisensmodellene i BizBox, og hvordan du kan bygge solide månedlige inntekter — helt uten kodekunnskap.' : 'I am trained on all 7 of our SaaS platforms, the BizBox licensing models, and monetization strategies for agencies and operators.'}</p>
+            <p>${isNo ? 'Hva kan jeg hjelpe deg med å utforske i dag?' : 'How can I help you discover the perfect software business to launch today?'}</p>
           </div>
-          <span class="advisor-msg-time">Just now</span>
+          <span class="advisor-msg-time">${isNo ? 'Akkurat nå' : 'Just now'}</span>
         </div>
       </div>
 
       <div class="advisor-chips-container">
-        <button class="advisor-chip-btn" data-query="Do I need technical skills?">🛠️ Zero Tech Skills Needed</button>
-        <button class="advisor-chip-btn" data-query="How does licensing pricing work?">💰 Licensing Pricing</button>
-        <button class="advisor-chip-btn" data-query="Tell me about Hubzzoo">⚡ Hubzzoo Opportunity</button>
-        <button class="advisor-chip-btn" data-query="Explain the 3 Whitelabel Tiers">📜 Whitelabel Tiers</button>
-        <button class="advisor-chip-btn" data-query="How does Lease-to-Own work?">🔑 Lease-to-Own</button>
-        <button class="advisor-chip-btn" data-query="How much MRR can I generate?">📈 Revenue Math</button>
+        <button class="advisor-chip-btn" data-query="${isNo ? 'Må jeg kunne koding eller teknikk?' : 'Do I need technical skills?'}">${isNo ? '🛠️ Null teknisk krav' : '🛠️ Zero Tech Skills Needed'}</button>
+        <button class="advisor-chip-btn" data-query="${isNo ? 'Hva koster lisensene og hva følger med?' : 'How does licensing pricing work?'}">${isNo ? '💰 Priser & Hva som inngår' : '💰 Licensing Pricing'}</button>
+        <button class="advisor-chip-btn" data-query="${isNo ? 'Fortell om Hubzzoo for håndverkere' : 'Tell me about Hubzzoo'}">${isNo ? '⚡ Hubzzoo' : '⚡ Hubzzoo Opportunity'}</button>
+        <button class="advisor-chip-btn" data-query="${isNo ? 'Hvordan fungerer Leie-til-eie?' : 'How does Lease-to-Own work?'}">${isNo ? '🔑 Leie-til-eie' : '🔑 Lease-to-Own'}</button>
+        <button class="advisor-chip-btn" data-query="${isNo ? 'Hvor mye kan jeg tjene?' : 'How much MRR can I generate?'}">${isNo ? '📈 Inntektskalkyle' : '📈 Revenue Math'}</button>
       </div>
 
       <div class="advisor-chat-input-bar">
-        <input type="text" id="advisor-user-input" class="advisor-input-field" placeholder="Ask about pricing, custom work, or market potential..." />
-        <button id="advisor-send-btn" class="advisor-send-btn" title="Send Message">➤</button>
+        <input type="text" id="advisor-user-input" class="advisor-input-field" placeholder="${isNo ? 'Still spørsmål om apper, priser eller marked...' : 'Ask about pricing, custom work, or market potential...'}" />
+        <button id="advisor-send-btn" class="advisor-send-btn" title="Send">➤</button>
       </div>
     `;
-    document.body.appendChild(chatWin);
 
     // Wire up events
+    const fab = document.getElementById('advisor-fab-trigger');
     const closeBtn = document.getElementById('advisor-close-btn');
     const inputField = document.getElementById('advisor-user-input');
     const sendBtn = document.getElementById('advisor-send-btn');
@@ -288,8 +446,8 @@
       }
     }
 
-    fab.addEventListener('click', () => toggleChat(true));
-    closeBtn.addEventListener('click', () => toggleChat(false));
+    fab.onclick = () => toggleChat(true);
+    closeBtn.onclick = () => toggleChat(false);
 
     function appendMessage(sender, text) {
       const msgDiv = document.createElement('div');
@@ -304,7 +462,7 @@
         <div class="advisor-bubble">
           <p>${formattedText}</p>
         </div>
-        <span class="advisor-msg-time">Just now</span>
+        <span class="advisor-msg-time">${advisorLang === 'no' ? 'Akkurat nå' : 'Just now'}</span>
       `;
       msgBox.appendChild(msgDiv);
       msgBox.scrollTop = msgBox.scrollHeight;
@@ -317,22 +475,19 @@
       appendMessage('user', text);
       if (!userText) inputField.value = '';
 
-      // Positive conversational response
       setTimeout(() => {
         const reply = generateAdvisorResponse(text);
         appendMessage('agent', reply);
       }, 350);
     }
 
-    sendBtn.addEventListener('click', () => handleSend());
-    inputField.addEventListener('keydown', (e) => {
+    sendBtn.onclick = () => handleSend();
+    inputField.onkeydown = (e) => {
       if (e.key === 'Enter') handleSend();
-    });
+    };
 
     chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        handleSend(chip.dataset.query);
-      });
+      chip.onclick = () => handleSend(chip.dataset.query);
     });
   }
 

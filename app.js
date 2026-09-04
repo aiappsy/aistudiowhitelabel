@@ -1,15 +1,155 @@
 // ============================================================================
 // AI APPS PORTFOLIO - CONTROLLER FOR CENTERED WHITELABEL CARDS
+// Full bilingual support (English & Norwegian Bokmål localized)
 // ============================================================================
 
 (function () {
   'use strict';
 
+  // State
+  let currentLang = localStorage.getItem('ai_showcase_lang') || 'en';
   let currentCategory = 'all';
+  let activeAppId = null;
 
+  // UI Strings dictionary for interface elements
+  const UI_STRINGS = {
+    en: {
+      flag: '🇳🇴',
+      switchLabel: 'Norsk',
+      headerInquiry: 'Whitelabel Licensing Guide',
+      brandSubtitle: 'Turnkey SaaS Marketplace & Whitelabel Hub',
+      heroTag: 'Turnkey SaaS Business Portfolio',
+      heroH2: 'Own & Operate Your Own <span class="highlight">AI SaaS Business</span> This Weekend.',
+      heroIntro: '<strong>Zero technical ability, coding skills, or SaaS experience needed.</strong> We take care of everything behind the scenes—including high-speed cloud hosting, database management, 24/7 technical support, and continuous frontier AI model upgrades.',
+      promiseBadge: "✨ WHAT'S ALWAYS INCLUDED IN EVERY LICENSE",
+      promiseP1Title: '100% Turnkey Whitelabel',
+      promiseP1Desc: 'Your brand, your custom logo, and your color scheme.',
+      promiseP2Title: 'Custom Domain & SSL',
+      promiseP2Desc: 'Fully configured on your domain (e.g. app.yourbrand.com).',
+      promiseP3Title: 'Dedicated Custom Hours Included',
+      promiseP3Desc: 'Tailored onboarding, branding adjustments & prompt tuning.',
+      promiseP4Title: 'Hands-Off Cloud & Tech Support',
+      promiseP4Desc: 'We manage servers, databases, security patches & uptime.',
+      promiseFooter: '➕ Need bespoke features or custom ERP integrations later? Flexible add-ons are available at <strong>very reasonable, transparent prices</strong>.',
+      trust1: 'Zero Technical Skill Needed',
+      trust2: 'Whitelabel, Domain & Custom Hours Included',
+      trust3: '80% to 95% Gross Margins',
+      trust4: 'Fully Managed Hosting & Tech Support',
+      filterAll: 'All 7 Platforms',
+      filterSales: 'Sales & CRM',
+      filterMedia: 'AI Video & Media',
+      filterSaas: 'SaaS & FinTech',
+      filterAgents: 'Autonomous Agents',
+      btnLearnMore: 'Learn More',
+      btnTechStack: 'Tech Stack',
+      btnLaunchApp: 'Launch App',
+      btnOpenApp: 'Open App',
+      tabOverview: '🌟 Executive Overview',
+      tabFeatures: '⚡ Core Superpowers',
+      tabBenefits: '📈 User & Business ROI',
+      tabWhitelabel: '💼 Whitelabel Operator Hub',
+      featuresHeading: 'Core Functions & Automated Capabilities',
+      benefitsHeading: 'Tangible User & Commercial Benefits',
+      operatorHeading: 'Whitelabel Operator & Monetization Potential',
+      modelsHeading: 'Turnkey Ownership & Licensing Models (BizBox Framework)',
+      estRevenueHeading: 'Estimated Monthly Operator Revenue',
+      btnInquireLicensing: 'Inquire About Licensing',
+      md2Sub: 'Durability, Cloud Infrastructure & Continuous Evolution',
+      md2DurableHeading: 'Why This Platform Is Strong, Resilient & Durable',
+      md2EvolHeading: '⚡ Continuous Evolution Protocol: Staying Ahead of AI',
+      inquiryTitle: 'Whitelabel Licensing Request',
+      inquirySubtitle: 'Select your software of interest and desired licensing tier. We will provide staging access, exact margin calculations, and turnkey launch documentation.',
+      lblTargetPlatform: 'Target Platform',
+      lblLicensingModel: 'Licensing Model (BizBox Framework)',
+      tier1Opt: 'Tier 1: Non-Exclusive Turnkey Whitelabel (Keep 100% MRR)',
+      tier2Opt: 'Tier 2: Monthly Lease with 70% Purchase Equity Credit',
+      tier3Opt: 'Tier 3: Master Buyout with Full Source Code IP Transfer',
+      lblNameCompany: 'Your Name & Company',
+      lblWorkEmail: 'Work Email',
+      lblWhereFound: 'Where did you find us?',
+      optSelectSource: 'Please select an option...',
+      lblNotes: 'Audience or Target Launch Goals',
+      phNotes: 'Tell us about your client base, existing agency traffic, or specific integrations...',
+      btnSubmitInquiry: 'Request Whitelabel Prospectus',
+      submittingText: 'Opening Email Client...',
+      alertSent: 'Thank you! Your email client has been opened with your inquiry pre-addressed to paljuritzen@gmail.com.',
+      inquireFor: 'Inquire for'
+    },
+    no: {
+      flag: '🇬🇧',
+      switchLabel: 'English',
+      headerInquiry: 'Lisens- & Whitelabelguide',
+      brandSubtitle: 'Nøkkelferdige SaaS-apper & Whitelabel Hub',
+      heroTag: 'Nøkkelferdig SaaS-portefølje',
+      heroH2: 'Eier og drift din egen <span class="highlight">AI SaaS-bedrift</span> denne uken.',
+      heroIntro: '<strong>Null teknisk kompetanse, koding eller forkunnskaper nødvendig.</strong> Vi tar oss av absolutt alt bak kulissene — inkludert lynrask skydrift, databaser, 24/7 teknisk support og kontinuerlige AI-oppgraderinger.',
+      promiseBadge: '✨ DETTE ER ALLTID INKLUDERT I ALLE LISENSER',
+      promiseP1Title: '100% Nøkkelferdig Whitelabel',
+      promiseP1Desc: 'Din egen merkevare, din logo og din fargeprofil.',
+      promiseP2Title: 'Eget domene & SSL',
+      promiseP2Desc: 'Ferdig konfigurert på ditt domene (f.eks. app.dittbyra.no).',
+      promiseP3Title: 'Inkluderte konsulenttimer',
+      promiseP3Desc: 'Dedikerte timer til branding, tilpasninger og lanseringshjelp.',
+      promiseP4Title: 'Full teknisk drift & support',
+      promiseP4Desc: 'Vi tar fullt ansvar for servere, sikkerhet og oppetid.',
+      promiseFooter: '➕ Trenger du spesialfunksjoner eller egne ERP-integrasjoner senere? Skreddersøm og tilleggsmoduler tilbys til <strong>svært rimelige og forutsigbare priser</strong>.',
+      trust1: 'Null teknisk kompetanse nødvendig',
+      trust2: 'Whitelabel, domene & utviklingstimer inkludert',
+      trust3: '80 % til 95 % bruttofortjeneste',
+      trust4: 'Fullt administrert hosting & tech support',
+      filterAll: 'Alle 7 Plattformene',
+      filterSales: 'Salg & CRM',
+      filterMedia: 'AI Video & Medier',
+      filterSaas: 'SaaS & FinTech',
+      filterAgents: 'Autonome Agenter',
+      btnLearnMore: 'Lær mer',
+      btnTechStack: 'Teknisk Stack',
+      btnLaunchApp: 'Åpne app',
+      btnOpenApp: 'Åpne app',
+      tabOverview: '🌟 Sammendrag',
+      tabFeatures: '⚡ Kjernefunksjoner',
+      tabBenefits: '📈 Verdi & Inntjening',
+      tabWhitelabel: '💼 Forretningsmodell',
+      featuresHeading: 'Kjernefunksjoner & Automatiserte Muligheter',
+      benefitsHeading: 'Konkrete Fordeler for Bruker og Bedrift',
+      operatorHeading: 'Inntjeningspotensial for Byråer og Operatører',
+      modelsHeading: 'Nøkkelferdige Eier- og Lisensmodeller (BizBox)',
+      estRevenueHeading: 'Estimert Månedlig Operatørinntekt',
+      btnInquireLicensing: 'Forespørsel om Lisensiering',
+      md2Sub: 'Oppetid, Skyinfrastruktur & Kontinuerlig Utvikling',
+      md2DurableHeading: 'Hvorfor denne plattformen er robust, fremtidssikker og stabil',
+      md2EvolHeading: '⚡ Kontinuerlig Utvikling: Alltid i front på AI-teknologi',
+      inquiryTitle: 'Forespørsel om Whitelabel-lisens',
+      inquirySubtitle: 'Velg programvaren du er interessert i og ønsket lisensmodell. Vi oversender staging-tilgang, kalkyler og lanseringsdokumentasjon.',
+      lblTargetPlatform: 'Målplattform',
+      lblLicensingModel: 'Lisensmodell (BizBox-rammeverket)',
+      tier1Opt: 'Tier 1: Nøkkelferdig Whitelabel (Behold 100% av inntektene)',
+      tier2Opt: 'Tier 2: Månedlig leie med 70% godskrevet kjøp',
+      tier3Opt: 'Tier 3: Fullt oppkjøp av kildekode og opphavsrett',
+      lblNameCompany: 'Ditt navn og bedrift',
+      lblWorkEmail: 'Arbeids-e-post',
+      lblWhereFound: 'Hvor fant du oss?',
+      optSelectSource: 'Vennligst velg et alternativ...',
+      lblNotes: 'Målgruppe eller lanseringsmål',
+      phNotes: 'Fortell litt om kundebasen din, eksisterende trafikk eller ønskede integrasjoner...',
+      btnSubmitInquiry: 'Be om Whitelabel-prospekt',
+      submittingText: 'Åpner e-postprogrammet...',
+      alertSent: 'Takk! E-postprogrammet ditt er åpnet med en ferdig utfylt forespørsel adressert til paljuritzen@gmail.com.',
+      inquireFor: 'Forespørsel for'
+    }
+  };
+
+  function getDataset() {
+    return currentLang === 'no' ? window.APPS_DATA_NO : window.APPS_DATA;
+  }
+
+  // DOM Elements
   const cardsContainer = document.getElementById('cards-container');
   const filterButtons = document.querySelectorAll('.filter-btn');
   const btnTopInquiry = document.getElementById('btn-top-inquiry');
+  const btnLangToggle = document.getElementById('btn-lang-toggle');
+  const langFlag = document.getElementById('lang-flag');
+  const langLabel = document.getElementById('lang-label');
 
   // Modal 1: Deep Dive
   const modalDeepdive = document.getElementById('modal-deepdive');
@@ -45,35 +185,180 @@
   const formAppSelect = document.getElementById('form-app-select');
   const inquiryForm = document.getElementById('inquiry-form');
 
-  let activeAppId = null;
-
   function init() {
+    applyLanguageUI();
     renderCards();
     setupEventListeners();
   }
 
+  function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'no' : 'en';
+    localStorage.setItem('ai_showcase_lang', currentLang);
+    applyLanguageUI();
+    renderCards();
+    if (window.updateAdvisorLanguage) {
+      window.updateAdvisorLanguage(currentLang);
+    }
+  }
+
+  function applyLanguageUI() {
+    const s = UI_STRINGS[currentLang];
+    
+    if (langFlag) langFlag.textContent = s.flag;
+    if (langLabel) langLabel.textContent = s.switchLabel;
+
+    const brandSub = document.querySelector('.brand-meta span');
+    if (brandSub) brandSub.textContent = s.brandSubtitle;
+
+    const txtHeaderInquiry = document.getElementById('txt-header-inquiry');
+    if (txtHeaderInquiry) txtHeaderInquiry.textContent = s.headerInquiry;
+
+    const heroPill = document.querySelector('.hero-pill-tag span:last-child');
+    if (heroPill) heroPill.textContent = s.heroTag;
+
+    const heroH2 = document.querySelector('.hero-centered h2');
+    if (heroH2) heroH2.innerHTML = s.heroH2;
+
+    const heroIntro = document.querySelector('.hero-intro-text');
+    if (heroIntro) heroIntro.innerHTML = s.heroIntro;
+
+    const promiseBadge = document.querySelector('.promise-highlight-badge');
+    if (promiseBadge) promiseBadge.textContent = s.promiseBadge;
+
+    const promiseItems = document.querySelectorAll('.promise-item');
+    if (promiseItems.length >= 4) {
+      promiseItems[0].querySelector('strong').textContent = s.promiseP1Title;
+      promiseItems[0].querySelector('p').textContent = s.promiseP1Desc;
+      promiseItems[1].querySelector('strong').textContent = s.promiseP2Title;
+      promiseItems[1].querySelector('p').textContent = s.promiseP2Desc;
+      promiseItems[2].querySelector('strong').textContent = s.promiseP3Title;
+      promiseItems[2].querySelector('p').textContent = s.promiseP3Desc;
+      promiseItems[3].querySelector('strong').textContent = s.promiseP4Title;
+      promiseItems[3].querySelector('p').textContent = s.promiseP4Desc;
+    }
+
+    const promiseFooter = document.querySelector('.promise-addon-footer span');
+    if (promiseFooter) promiseFooter.innerHTML = s.promiseFooter;
+
+    const trustItems = document.querySelectorAll('.trust-values-bar .trust-item');
+    if (trustItems.length >= 4) {
+      trustItems[0].innerHTML = '<span class="icon">✓</span> ' + s.trust1;
+      trustItems[1].innerHTML = '<span class="icon">✓</span> ' + s.trust2;
+      trustItems[2].innerHTML = '<span class="icon">✓</span> ' + s.trust3;
+      trustItems[3].innerHTML = '<span class="icon">✓</span> ' + s.trust4;
+    }
+
+    // Filter Buttons
+    const fBtns = document.querySelectorAll('.filter-btn');
+    if (fBtns.length >= 5) {
+      fBtns[0].textContent = s.filterAll;
+      fBtns[1].textContent = s.filterSales;
+      fBtns[2].textContent = s.filterMedia;
+      fBtns[3].textContent = s.filterSaas;
+      fBtns[4].textContent = s.filterAgents;
+    }
+
+    // Modal 1 Tabs
+    const mTabs = document.querySelectorAll('.modal-tab');
+    if (mTabs.length >= 4) {
+      mTabs[0].textContent = s.tabOverview;
+      mTabs[1].textContent = s.tabFeatures;
+      mTabs[2].textContent = s.tabBenefits;
+      mTabs[3].textContent = s.tabWhitelabel;
+    }
+
+    const paneFeaturesH4 = document.querySelector('#pane-features .pane-headline');
+    if (paneFeaturesH4) paneFeaturesH4.textContent = s.featuresHeading;
+
+    const paneBenefitsH4 = document.querySelector('#pane-benefits .pane-headline');
+    if (paneBenefitsH4) paneBenefitsH4.textContent = s.benefitsHeading;
+
+    const paneWhitelabelH4 = document.querySelector('#pane-whitelabel .pane-headline');
+    if (paneWhitelabelH4) paneWhitelabelH4.textContent = s.operatorHeading;
+
+    const modelsTitle = document.querySelector('#pane-whitelabel h5');
+    if (modelsTitle) modelsTitle.textContent = s.modelsHeading;
+
+    const estRevTitle = document.querySelector('.operator-calc-row h5');
+    if (estRevTitle) estRevTitle.textContent = s.estRevenueHeading;
+
+    const btnInqTrig = document.getElementById('btn-modal-inquire-trigger');
+    if (btnInqTrig) btnInqTrig.textContent = s.btnInquireLicensing;
+
+    const directLinkSpan = document.querySelector('#md1-direct-link span:first-child');
+    if (directLinkSpan) directLinkSpan.textContent = s.btnOpenApp;
+
+    // Modal 2 Headers
+    const md2Sub = document.querySelector('#modal-techstack .modal-header-title p');
+    if (md2Sub) md2Sub.textContent = s.md2Sub;
+
+    const md2DurableH5 = document.querySelector('#modal-techstack h5');
+    if (md2DurableH5) md2DurableH5.textContent = s.md2DurableHeading;
+
+    const md2EvolH5 = document.querySelector('.evolution-card h5');
+    if (md2EvolH5) md2EvolH5.textContent = s.md2EvolHeading;
+
+    // Modal 3 Inquiry Form
+    const inqH3 = document.querySelector('#modal-inquiry .modal-header h3');
+    if (inqH3) inqH3.textContent = s.inquiryTitle;
+
+    const inqP = document.querySelector('#modal-inquiry .modal-body p');
+    if (inqP) inqP.textContent = s.inquirySubtitle;
+
+    const formLabels = document.querySelectorAll('#inquiry-form label');
+    if (formLabels.length >= 6) {
+      formLabels[0].textContent = s.lblTargetPlatform;
+      formLabels[1].textContent = s.lblLicensingModel;
+      formLabels[2].textContent = s.lblNameCompany;
+      formLabels[3].textContent = s.lblWorkEmail;
+      formLabels[4].textContent = s.lblWhereFound;
+      formLabels[5].textContent = s.lblNotes;
+    }
+
+    const tierSelect = document.getElementById('form-tier-select');
+    if (tierSelect && tierSelect.options.length >= 3) {
+      tierSelect.options[0].textContent = s.tier1Opt;
+      tierSelect.options[1].textContent = s.tier2Opt;
+      tierSelect.options[2].textContent = s.tier3Opt;
+    }
+
+    const sourceSelect = document.getElementById('form-source');
+    if (sourceSelect && sourceSelect.options.length > 0) {
+      sourceSelect.options[0].textContent = s.optSelectSource;
+    }
+
+    const notesArea = document.getElementById('form-notes');
+    if (notesArea) notesArea.placeholder = s.phNotes;
+
+    const btnSubmitInquiry = document.getElementById('btn-submit-inquiry');
+    if (btnSubmitInquiry) {
+      btnSubmitInquiry.querySelector('span:last-child').textContent = s.btnSubmitInquiry;
+    }
+  }
+
   // Generates authentic UI mockup preview for each app
   function renderMockupCanvas(app) {
+    const isNo = currentLang === 'no';
     switch (app.id) {
       case 'hubzzoo':
         return `
           <div class="app-ui-canvas">
             <div class="ui-hubzoo-pipeline">
               <div class="pipeline-col">
-                <div class="pipeline-header"><span>📥</span> Inbound Inquiries</div>
-                <div class="pipeline-card-snippet">Auto-captured via WhatsApp & Web form</div>
+                <div class="pipeline-header"><span>📥</span> ${isNo ? 'Innkomne henvendelser' : 'Inbound Inquiries'}</div>
+                <div class="pipeline-card-snippet">${isNo ? 'Fanges fra nettside & WhatsApp' : 'Auto-captured via WhatsApp & Web form'}</div>
               </div>
               <div class="pipeline-col">
-                <div class="pipeline-header"><span>⚡</span> Mobile Quotes</div>
-                <div class="pipeline-card-snippet">Created & dispatched on-site in < 60s</div>
+                <div class="pipeline-header"><span>⚡</span> ${isNo ? 'Pristilbud på mobilen' : 'Mobile Quotes'}</div>
+                <div class="pipeline-card-snippet">${isNo ? 'Sendes på under 60 sekunder' : 'Created & dispatched on-site in < 60s'}</div>
               </div>
               <div class="pipeline-col">
-                <div class="pipeline-header"><span>🤖</span> Auto Follow-Up</div>
-                <div class="pipeline-card-snippet">Context-aware nudge scheduled (48h / 5d)</div>
+                <div class="pipeline-header"><span>🤖</span> ${isNo ? 'Automatisk oppfølging' : 'Auto Follow-Up'}</div>
+                <div class="pipeline-card-snippet">${isNo ? 'Planlagte påminnelser (48t / 5d)' : 'Context-aware nudge scheduled (48h / 5d)'}</div>
               </div>
               <div class="pipeline-col">
-                <div class="pipeline-header"><span>✓</span> Approved & Invoiced</div>
-                <div class="pipeline-card-snippet">Direct 1-click sync to Tripletex & Fiken</div>
+                <div class="pipeline-header"><span>✓</span> ${isNo ? 'Godkjent & Fakturert' : 'Approved & Invoiced'}</div>
+                <div class="pipeline-card-snippet">${isNo ? 'Direkte synk til Fiken & Tripletex' : 'Direct 1-click sync to Tripletex & Fiken'}</div>
               </div>
             </div>
           </div>
@@ -83,16 +368,9 @@
         return `
           <div class="app-ui-canvas">
             <div class="ui-maxmotion-studio">
-              <div style="font-size: 0.75rem; font-weight: 700; color: #475569;">SELECT VIDEO ENGINE:</div>
-              <div class="studio-engine-bar">
-                <span class="engine-badge active">🎬 Wan 2.1 (35mm Cinematics)</span>
-                <span class="engine-badge">⚡ Kling 1.5 Pro (Anatomy)</span>
-                <span class="engine-badge">🎭 Minimax (Micro-Expressions)</span>
-                <span class="engine-badge">🚀 Seedance 2.0 (High Action)</span>
-              </div>
-              <div class="studio-timeline-track">
-                <span>TIMELINE SEQUENCER: Track 01 [Wan 2.1 Scene] ➔ Track 02 [Kling Pro Action]</span>
-                <span style="color: #38bdf8;">GCS Permanent Mirror Active</span>
+              <div class="studio-model-badge"><span>●</span> Wan 2.1 / Kling 1.5 Pro / Minimax</div>
+              <div class="studio-prompt-preview">
+                <strong>${isNo ? 'Prompt-orkestrering:' : 'Prompt Orchestration:'}</strong> "Cinematic commercial shot of luxury watch, dynamic drone camera sweep, volumetric studio lighting, 4K 60fps photorealistic render"
               </div>
             </div>
           </div>
@@ -102,26 +380,10 @@
         return `
           <div class="app-ui-canvas">
             <div class="ui-mediabunny-suite">
-              <div class="suite-tool-card">
-                <div style="font-size: 1.2rem;">✂️</div>
-                <div class="suite-tool-title">AI Background Cut</div>
-                <div class="suite-tool-desc">On-device WebAssembly</div>
-              </div>
-              <div class="suite-tool-card">
-                <div style="font-size: 1.2rem;">🎙️</div>
-                <div class="suite-tool-title">EBU R128 Audio</div>
-                <div class="suite-tool-desc">Broadcast Normalizer</div>
-              </div>
-              <div class="suite-tool-card">
-                <div style="font-size: 1.2rem;">🗜️</div>
-                <div class="suite-tool-title">CRF Video Squeezer</div>
-                <div class="suite-tool-desc">Up to 75% size cut</div>
-              </div>
-              <div class="suite-tool-card">
-                <div style="font-size: 1.2rem;">🐰</div>
-                <div class="suite-tool-title">BunnyBot Assistant</div>
-                <div class="suite-tool-desc">Gemini 3.7 Copilot</div>
-              </div>
+              <div class="tool-tile"><span class="tool-icon">✂️</span> ${isNo ? 'WASM Bakgrunnsfjerning' : 'WASM Background Removal'}</div>
+              <div class="tool-tile"><span class="tool-icon">🎙️</span> ${isNo ? 'EBU R128 Lydnormalisering' : 'EBU R128 Audio Normalizer'}</div>
+              <div class="tool-tile"><span class="tool-icon">📦</span> ${isNo ? 'Intelligent CRF Komprimering' : 'Intelligent CRF Compressor'}</div>
+              <div class="tool-tile"><span class="tool-icon">🐰</span> ${isNo ? 'BunnyBot Assistent' : 'BunnyBot Automation'}</div>
             </div>
           </div>
         `;
@@ -129,15 +391,10 @@
       case 'subsentry':
         return `
           <div class="app-ui-canvas">
-            <div class="ui-subsentry-shield">
-              <div class="shield-box">
-                <h5>🛡️ Deceptive Dark Pattern Shield</h5>
-                <p>Identifies manipulative cancellation funnels, forced annual billing, and hidden renewal terms.</p>
-              </div>
-              <div class="shield-box" style="background: #f0fdf4; border-color: #bbf7d0;">
-                <h5 style="color: #166534;">📋 1-Click Cancellation CMS</h5>
-                <p style="color: #15803d;">Direct verified settings paths + cheaper affiliate alternatives.</p>
-              </div>
+            <div class="ui-subsentry-dash">
+              <div class="sub-item"><span>⚡ Cloud Engine Pro</span><span class="sub-alert-tag">${isNo ? 'Fornyes om 3 dager' : 'Renewal in 3 days'}</span></div>
+              <div class="sub-item"><span>🎨 Vector Icon Studio</span><span class="sub-clean-tag">${isNo ? '1-klikks oppsigelse aktiv' : '1-Click Cancellation active'}</span></div>
+              <div class="sub-item"><span>📊 Analytics Cloud Plus</span><span class="sub-clean-tag">${isNo ? 'Felle omgått' : 'Dark Pattern Shielded'}</span></div>
             </div>
           </div>
         `;
@@ -145,12 +402,14 @@
       case 'appsave':
         return `
           <div class="app-ui-canvas">
-            <div class="ui-appsave-checkout">
-              <div class="checkout-details">
-                <span class="checkout-store">SaaS Checkout Detected: DigitalOcean / Notion / Midjourney</span>
-                <span class="checkout-sub">DOM scanner active · Verified coupon verification in progress</span>
+            <div class="ui-appsave-browser">
+              <div class="appsave-ext-banner">
+                <span style="font-weight:800;">AppSave</span>
+                <span class="ext-pill">${isNo ? 'Chrome Manifest V3 Aktiv' : 'Chrome Manifest V3 Active'}</span>
               </div>
-              <span class="appsave-pill-injected">✨ AppSave: Verified Code Applied!</span>
+              <div style="font-size:0.8rem; color:#475569; margin-top:0.4rem;">
+                ${isNo ? 'Finner og tester rabattkoder automatisk ved utsjekk på SaaS- og AI-verktøy' : 'Crowdsourced discount codes validated in real-time at checkout across 500+ SaaS vendors'}
+              </div>
             </div>
           </div>
         `;
@@ -158,15 +417,10 @@
       case 'upworkz':
         return `
           <div class="app-ui-canvas">
-            <div class="ui-upworkz-studio">
-              <div class="proposal-box">
-                <h5>Stage 1: 220-Character Mobile Hook</h5>
-                <p>"Bypasses Upwork client inbox truncation — starts directly with diagnosis"</p>
-              </div>
-              <div class="proposal-box" style="background: #eff6ff; border-color: #bfdbfe;">
-                <h5 style="color: #1d4ed8;">Stage 2: Technical Gotcha Audit</h5>
-                <p style="color: #1e40af;">"Pre-bid complexity rating & scope creep clauses"</p>
-              </div>
+            <div class="ui-upworkz-audit">
+              <div class="audit-step-pill"><span>✓</span> ${isNo ? 'Gemini 2.5 Resonnering' : 'Gemini 2.5 Tenke-Arkitektur'}</div>
+              <div class="audit-step-pill"><span>✓</span> ${isNo ? '220-tegns åpningskrok optimalisert' : '220-Char Visual Hook Optimized'}</div>
+              <div class="audit-step-pill"><span>✓</span> ${isNo ? 'Avslørte oppdragsgivers kontrollspørsmål' : 'Gotcha Question Detected & Answered'}</div>
             </div>
           </div>
         `;
@@ -175,9 +429,9 @@
         return `
           <div class="app-ui-canvas">
             <div class="ui-manus-agent">
-              <div class="agent-step-item"><span class="step-check">✓</span> 1. Autonomous Web Research & Competitor Synthesis</div>
-              <div class="agent-step-item"><span class="step-check">✓</span> 2. Headless Browser Navigation & Table Parsing</div>
-              <div class="agent-step-item"><span class="step-check">✓</span> 3. Isolated MicroVM Code Generation & Live Deployment</div>
+              <div class="agent-step-item"><span class="step-check">✓</span> 1. ${isNo ? 'Autonom nett-research & syntese' : 'Autonomous Web Research & Competitor Synthesis'}</div>
+              <div class="agent-step-item"><span class="step-check">✓</span> 2. ${isNo ? 'Hodeløs nettleserstyring & tabelltolking' : 'Headless Browser Navigation & Table Parsing'}</div>
+              <div class="agent-step-item"><span class="step-check">✓</span> 3. ${isNo ? 'Sikker MicroVM kodekjøring & levering' : 'Isolated MicroVM Code Generation & Live Deployment'}</div>
             </div>
           </div>
         `;
@@ -189,10 +443,12 @@
 
   function renderCards() {
     cardsContainer.innerHTML = '';
+    const dataset = getDataset();
+    const s = UI_STRINGS[currentLang];
 
     const apps = currentCategory === 'all'
-      ? window.APPS_DATA
-      : window.APPS_DATA.filter(app => app.category === currentCategory);
+      ? dataset
+      : dataset.filter(app => app.category === currentCategory);
 
     apps.forEach((app) => {
       const card = document.createElement('article');
@@ -252,18 +508,18 @@
             <!-- Link 1: Learn More (Deep Dive Modal) -->
             <button class="btn-card-action btn-learn-more" data-action="deepdive" data-appid="${app.id}">
               <span>🔍</span>
-              <span>Learn More</span>
+              <span>${s.btnLearnMore}</span>
             </button>
 
             <!-- Link 2: Tech Stack (Tech Stack & Durability Modal) -->
             <button class="btn-card-action btn-tech-stack" data-action="techstack" data-appid="${app.id}">
               <span>⚡</span>
-              <span>Tech Stack</span>
+              <span>${s.btnTechStack}</span>
             </button>
 
             <!-- Link 3: Launch App (New Tab) -->
             <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-launch-app">
-              <span>Launch App</span>
+              <span>${s.btnLaunchApp}</span>
               <span>↗</span>
             </a>
           </footer>
@@ -278,13 +534,15 @@
   // MODAL 1: DEEP DIVE
   // --------------------------------------------------------------------------
   function openDeepDiveModal(appId) {
-    const app = window.APPS_DATA.find(a => a.id === appId);
+    const dataset = getDataset();
+    const app = dataset.find(a => a.id === appId);
     if (!app) return;
     activeAppId = appId;
+    const s = UI_STRINGS[currentLang];
 
     md1Icon.textContent = app.name.slice(0, 1);
-    md1Title.textContent = `${app.name} — Detailed Overview & Commercial Potential`;
-    md1Url.textContent = app.url;
+    md1Title.textContent = `${app.name} — ${s.btnLearnMore}`;
+    md1Url.textContent = `https://${app.domain}`;
     md1DirectLink.href = app.url;
 
     md1Headline.textContent = app.deepDive.headline;
@@ -292,10 +550,7 @@
 
     md1FeaturesGrid.innerHTML = app.deepDive.coreFunctions.map(f => `
       <div class="detail-card">
-        <div class="detail-card-header">
-          <span>${f.icon}</span>
-          <h4>${f.title}</h4>
-        </div>
+        <h5><span>${f.icon}</span> <span>${f.title}</span></h5>
         <div class="detail-summary">${f.summary}</div>
         <div class="detail-desc">${f.details}</div>
       </div>
@@ -322,7 +577,7 @@
           </ul>
         </div>
         <button class="btn-card-action btn-tech-stack" style="width: 100%; font-size: 0.78rem; padding: 0.5rem;" onclick="window.requestTierInquiry('${app.id}', '${m.tier}')">
-          Inquire for ${m.tier.split(' ')[0]} ➔
+          ${s.inquireFor} ${m.tier.split(' ')[0]} ➔
         </button>
       </div>
     `).join('');
@@ -358,10 +613,11 @@
   // MODAL 2: TECH STACK & DURABILITY
   // --------------------------------------------------------------------------
   function openTechStackModal(appId) {
-    const app = window.APPS_DATA.find(a => a.id === appId);
+    const dataset = getDataset();
+    const app = dataset.find(a => a.id === appId);
     if (!app) return;
 
-    md2Title.textContent = `${app.name} — Technical Architecture`;
+    md2Title.textContent = `${app.name} — ${UI_STRINGS[currentLang].btnTechStack}`;
     md2Headline.textContent = app.techStack.headline;
     md2Summary.textContent = app.techStack.summary;
 
@@ -392,12 +648,19 @@
   // --------------------------------------------------------------------------
   // MODAL 3: OPERATOR INQUIRY
   // --------------------------------------------------------------------------
-  function openInquiryModal(appId) {
-    if (appId) {
-      formAppSelect.value = appId;
-    } else if (activeAppId) {
-      formAppSelect.value = activeAppId;
+  function openInquiryModal(targetAppId, targetTier) {
+    if (targetAppId) {
+      formAppSelect.value = targetAppId;
     }
+    if (targetTier) {
+      const tierSelect = document.getElementById('form-tier-select');
+      if (tierSelect) {
+        if (targetTier.toLowerCase().includes('turnkey') || targetTier.toLowerCase().includes('nøkkel')) tierSelect.value = 'turnkey';
+        else if (targetTier.toLowerCase().includes('lease') || targetTier.toLowerCase().includes('leie')) tierSelect.value = 'lease';
+        else if (targetTier.toLowerCase().includes('buyout') || targetTier.toLowerCase().includes('kjøp')) tierSelect.value = 'buyout';
+      }
+    }
+
     modalInquiry.classList.add('open');
     modalInquiry.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -406,19 +669,24 @@
   function closeInquiryModal() {
     modalInquiry.classList.remove('open');
     modalInquiry.setAttribute('aria-hidden', 'true');
-    if (!modalDeepdive.classList.contains('open') && !modalTechstack.classList.contains('open')) {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = '';
   }
 
-  window.requestTierInquiry = function (appId, tier) {
-    openInquiryModal(appId);
+  window.requestTierInquiry = function(appId, tierName) {
+    closeDeepDiveModal();
+    setTimeout(() => {
+      openInquiryModal(appId, tierName);
+    }, 200);
   };
 
   // --------------------------------------------------------------------------
   // EVENT LISTENERS
   // --------------------------------------------------------------------------
   function setupEventListeners() {
+    if (btnLangToggle) {
+      btnLangToggle.addEventListener('click', toggleLanguage);
+    }
+
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         filterButtons.forEach(b => b.classList.remove('active'));
@@ -463,6 +731,7 @@
 
     inquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const s = UI_STRINGS[currentLang];
       const submitBtn = document.getElementById('btn-submit-inquiry');
       
       const appSelect = document.getElementById('form-app-select');
@@ -472,34 +741,34 @@
       const contactName = document.getElementById('form-name').value.trim();
       const contactEmail = document.getElementById('form-email').value.trim();
       const sourceSelect = document.getElementById('form-source');
-      const foundSource = sourceSelect.value || 'Not specified';
+      const foundSource = sourceSelect.value || (currentLang === 'no' ? 'Ikke spesifisert' : 'Not specified');
       const notes = document.getElementById('form-notes').value.trim();
 
       const subject = encodeURIComponent(`Whitelabel Licensing Inquiry: ${appName} [${contactName}]`);
       const bodyLines = [
-        `Whitelabel Licensing Inquiry`,
-        `----------------------------------------`,
-        `Target Platform: ${appName}`,
-        `Licensing Model: ${tierName}`,
-        `Name & Company: ${contactName}`,
-        `Work Email: ${contactEmail}`,
-        `Where they found us: ${foundSource}`,
-        `Audience & Launch Goals:`,
-        notes ? notes : '(None provided)',
-        `----------------------------------------`,
-        `Sent via AI SaaS Whitelabel Showcase Portal`
+        currentLang === 'no' ? 'Forespørsel om Whitelabel-lisens' : 'Whitelabel Licensing Inquiry',
+        '----------------------------------------',
+        (currentLang === 'no' ? 'Valgt plattform: ' : 'Target Platform: ') + appName,
+        (currentLang === 'no' ? 'Lisensmodell: ' : 'Licensing Model: ') + tierName,
+        (currentLang === 'no' ? 'Navn & Selskap: ' : 'Name & Company: ') + contactName,
+        (currentLang === 'no' ? 'Arbeids-e-post: ' : 'Work Email: ') + contactEmail,
+        (currentLang === 'no' ? 'Hvor fant de oss: ' : 'Where they found us: ') + foundSource,
+        currentLang === 'no' ? 'Målgruppe og lanseringsmål:' : 'Audience & Launch Goals:',
+        notes ? notes : (currentLang === 'no' ? '(Ingen oppgitt)' : '(None provided)'),
+        '----------------------------------------',
+        'Sent via AI SaaS Whitelabel Showcase Portal'
       ];
 
       const mailtoUrl = `mailto:paljuritzen@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
 
-      submitBtn.textContent = 'Opening Email Client...';
+      submitBtn.querySelector('span:last-child').textContent = s.submittingText;
       
       // Trigger the mail client
       window.location.href = mailtoUrl;
 
       setTimeout(() => {
-        alert(`Thank you, ${contactName}! Your email client has been opened with your inquiry pre-addressed to paljuritzen@gmail.com.`);
-        submitBtn.textContent = 'Request Whitelabel Prospectus';
+        alert(s.alertSent);
+        submitBtn.querySelector('span:last-child').textContent = s.btnSubmitInquiry;
         closeInquiryModal();
       }, 700);
     });
