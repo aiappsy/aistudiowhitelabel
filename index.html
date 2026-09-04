@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turnkey AI SaaS Platforms — Whitelabel Software Ecosystem</title>
+  <meta name="description" content="Discover, explore, and operate our suite of 7 production-grade AI SaaS applications. Turnkey software ready to rebrand, launch, and monetize.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="page-container">
+    
+    <!-- Top Brand Header -->
+    <header class="top-header">
+      <a href="#" class="brand-link">
+        <div class="brand-logo-badge">⚡</div>
+        <div class="brand-meta">
+          <h1>AIAPPSY<span>.STUDIO</span></h1>
+          <span>Turnkey SaaS Marketplace & Whitelabel Hub</span>
+        </div>
+      </a>
+
+      <button class="btn-header-inquiry" id="btn-top-inquiry">
+        <span>💼</span>
+        <span>Whitelabel Licensing Guide</span>
+      </button>
+    </header>
+
+    <!-- CENTERED HERO SECTION (Selling Whitelabel SaaS Platforms) -->
+    <section class="hero-centered">
+      <div class="hero-pill-tag">
+        <span>🚀</span>
+        <span>Turnkey SaaS Business Portfolio</span>
+      </div>
+
+      <h2>
+        Own & Operate Your Own <span class="highlight">AI SaaS Business</span> This Weekend.
+      </h2>
+
+      <p class="hero-intro-text">
+        Don't spend months building from scratch. Every software platform below is a fully working, production-tested business ready to launch under your own brand and domain. You keep 100% of your client subscription revenue while cloud hosting, database management, and frontier AI model updates run reliably behind the scenes.
+      </p>
+
+      <!-- Trust Bar -->
+      <div class="trust-values-bar">
+        <div class="trust-item"><span class="icon">✓</span> 100% Whitelabel Ready</div>
+        <div class="trust-item"><span class="icon">✓</span> Stripe & Accounting Integrated</div>
+        <div class="trust-item"><span class="icon">✓</span> 80% to 95% Gross Margins</div>
+        <div class="trust-item"><span class="icon">✓</span> Continuous AI Model Upgrades</div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <nav class="category-filter-bar" aria-label="Filter by Category">
+        <button class="filter-btn active" data-cat="all">All 7 Platforms</button>
+        <button class="filter-btn" data-cat="sales-crm">Sales & CRM</button>
+        <button class="filter-btn" data-cat="media-video">AI Video & Media</button>
+        <button class="filter-btn" data-cat="saas-finance">SaaS & FinTech</button>
+        <button class="filter-btn" data-cat="autonomous-agents">Autonomous Agents</button>
+      </nav>
+    </section>
+
+    <!-- CENTERED CARDS STREAM (One centered card for each app) -->
+    <main class="centered-cards-stream" id="cards-container">
+      <!-- Dynamically populated with all 7 apps -->
+    </main>
+
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: FULL-SCREEN DEEP DIVE (Users & Whitelabel Operators)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modal-deepdive" aria-hidden="true">
+    <div class="modal-container" role="dialog" aria-modal="true">
+      
+      <!-- Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-header-icon" id="md1-icon">⚡</div>
+          <div class="modal-header-title">
+            <h3 id="md1-title">App Name — Deep Dive</h3>
+            <p id="md1-url">https://app.ai.studio</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-launch-app" id="md1-direct-link" style="padding: 0.45rem 0.9rem; font-size: 0.8rem;">
+            <span>Open App</span>
+            <span>↗</span>
+          </a>
+          <button class="modal-close-btn" id="btn-close-md1" aria-label="Close modal">✕</button>
+        </div>
+      </div>
+
+      <!-- Internal Tabs -->
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="overview">🌟 Executive Overview</button>
+        <button class="modal-tab" data-tab="features">⚡ Core Superpowers</button>
+        <button class="modal-tab" data-tab="benefits">📈 User & Business ROI</button>
+        <button class="modal-tab" data-tab="whitelabel">💼 Whitelabel Operator Hub</button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        
+        <!-- Tab 1: Overview -->
+        <div class="modal-pane active" id="pane-overview">
+          <h4 class="pane-headline" id="md1-headline">Overview</h4>
+          <div class="story-lead-box" id="md1-story"></div>
+        </div>
+
+        <!-- Tab 2: Features -->
+        <div class="modal-pane" id="pane-features">
+          <h4 class="pane-headline">Core Functions & Automated Capabilities</h4>
+          <div class="detail-grid-2col" id="md1-features-grid"></div>
+        </div>
+
+        <!-- Tab 3: Benefits -->
+        <div class="modal-pane" id="pane-benefits">
+          <h4 class="pane-headline">Tangible User & Commercial Benefits</h4>
+          <div class="detail-grid-2col" id="md1-benefits-grid"></div>
+        </div>
+
+        <!-- Tab 4: Whitelabel -->
+        <div class="modal-pane" id="pane-whitelabel">
+          <h4 class="pane-headline">Whitelabel Operator & Monetization Potential</h4>
+          <div class="operator-pitch-card" id="md1-operator-pitch"></div>
+          
+          <h5 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">
+            Turnkey Ownership & Licensing Models (BizBox Framework)
+          </h5>
+          <div class="licensing-grid" id="md1-licensing-grid"></div>
+
+          <div class="operator-calc-row">
+            <div>
+              <h5 style="font-size: 0.95rem; font-weight: 800; color: #0f172a;">Estimated Monthly Operator Revenue</h5>
+              <p style="font-size: 0.82rem; color: #64748b;" id="md1-revenue-text"></p>
+            </div>
+            <button class="btn-card-action btn-learn-more" id="btn-modal-inquire-trigger">Inquire About Licensing</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: TECH STACK, DURABILITY & CONTINUOUS EVOLUTION
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modal-techstack" aria-hidden="true">
+    <div class="modal-container" role="dialog" aria-modal="true">
+      
+      <!-- Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-header-icon" style="background: #e0f2fe; color: #0284c7;">⚡</div>
+          <div class="modal-header-title">
+            <h3 id="md2-title">App Name — Technical Architecture</h3>
+            <p>Durability, Cloud Infrastructure & Continuous Evolution</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btn-close-md2" aria-label="Close tech stack modal">✕</button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <h4 class="pane-headline" id="md2-headline">Engineered for Extreme Reliability</h4>
+        <p style="font-size: 0.95rem; color: #475569; line-height: 1.6;" id="md2-summary"></p>
+
+        <!-- Stack Badges -->
+        <div class="tech-chips-list" id="md2-chips-list"></div>
+
+        <!-- 4 Pillars of Durability -->
+        <h5 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">
+          Why This Platform Is Strong, Resilient & Durable
+        </h5>
+        <div class="tech-durability-grid" id="md2-durability-grid"></div>
+
+        <!-- Continuous Evolution -->
+        <div class="evolution-card">
+          <h5>⚡ Continuous Evolution Protocol: Staying Ahead of AI</h5>
+          <div id="md2-evolution-text"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: WHITELABEL OPERATOR INQUIRY DIALOG
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modal-inquiry" aria-hidden="true">
+    <div class="modal-container" style="max-width: 540px;" role="dialog" aria-modal="true">
+      
+      <div class="modal-header">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">Whitelabel Licensing Request</h3>
+        <button class="modal-close-btn" id="btn-close-inquiry">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 1.5rem;">
+          Select your software of interest and desired licensing tier. We will provide staging access, exact margin calculations, and turnkey launch documentation.
+        </p>
+
+        <form id="inquiry-form">
+          <div class="form-group-item">
+            <label for="form-app-select">Target Platform</label>
+            <select id="form-app-select" class="form-field">
+              <option value="hubzzoo">Hubzzoo (AI Sales Agent & CRM)</option>
+              <option value="maxmotion">MaxMotion AI (Multi-Model Video Studio)</option>
+              <option value="mediabunny">MediaBunny (AI Media & Audio Suite)</option>
+              <option value="subsentry">SubSentry (Subscription Watchdog & Shield)</option>
+              <option value="appsave">AppSave ('Honey' for SaaS & AI Discounts)</option>
+              <option value="upworkz">Upworkz (Proposal Architect & Deal Closer)</option>
+              <option value="manus">Manus AI Studio (Autonomous Action Agent)</option>
+            </select>
+          </div>
+
+          <div class="form-group-item">
+            <label for="form-tier-select">Licensing Model (BizBox Framework)</label>
+            <select id="form-tier-select" class="form-field">
+              <option value="turnkey">Tier 1: Non-Exclusive Turnkey Whitelabel (Keep 100% MRR)</option>
+              <option value="lease">Tier 2: Monthly Lease with 70% Purchase Equity Credit</option>
+              <option value="buyout">Tier 3: Master Buyout with Full Source Code IP Transfer</option>
+            </select>
+          </div>
+
+          <div class="form-group-item">
+            <label for="form-name">Your Name & Company</label>
+            <input type="text" id="form-name" class="form-field" placeholder="e.g. Marcus Thorne · Apex Media Group" required>
+          </div>
+
+          <div class="form-group-item">
+            <label for="form-email">Work Email</label>
+            <input type="email" id="form-email" class="form-field" placeholder="name@company.com" required>
+          </div>
+
+          <div class="form-group-item">
+            <label for="form-source">Where did you find us?</label>
+            <select id="form-source" class="form-field" required>
+              <option value="" disabled selected>Please select an option...</option>
+              <option value="Google / Web Search">Google / Web Search</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Twitter / X">Twitter / X</option>
+              <option value="AI Studio / Google AI Showcase">AI Studio / Google AI Showcase</option>
+              <option value="Direct Referral / Recommendation">Direct Referral / Recommendation</option>
+              <option value="SaaS Directory / Product Hunt">SaaS Directory / Product Hunt</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group-item">
+            <label for="form-notes">Audience or Target Launch Goals</label>
+            <textarea id="form-notes" class="form-field" rows="3" placeholder="Tell us about your client base, existing agency traffic, or specific integrations..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-card-action btn-learn-more" style="width: 100%; padding: 0.85rem; font-size: 0.92rem; margin-top: 0.5rem;" id="btn-submit-inquiry">
+            <span>🚀</span>
+            <span>Request Whitelabel Prospectus</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
