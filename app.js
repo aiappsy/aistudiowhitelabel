@@ -797,6 +797,30 @@
   };
 
   // --------------------------------------------------------------------------
+  // MODAL 4: TEMPLATES INQUIRY
+  // --------------------------------------------------------------------------
+  function openTemplatesModal() {
+    const modal = document.getElementById('modal-templates');
+    if (modal) {
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeTemplatesModal() {
+    const modal = document.getElementById('modal-templates');
+    if (modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  window.openTemplatesModal = openTemplatesModal;
+  window.closeTemplatesModal = closeTemplatesModal;
+
+  // --------------------------------------------------------------------------
   // EVENT LISTENERS
   // --------------------------------------------------------------------------
   function setupEventListeners() {
@@ -839,6 +863,53 @@
     modalTechstack.addEventListener('click', (e) => {
       if (e.target === modalTechstack) closeTechStackModal();
     });
+
+    // Templates Modal Listeners
+    const btnTplHeader = document.getElementById('btn-templates-tab');
+    if (btnTplHeader) {
+      btnTplHeader.addEventListener('click', (e) => {
+        e.preventDefault();
+        openTemplatesModal();
+      });
+    }
+
+    const btnTplFilter = document.getElementById('filter-btn-templates');
+    if (btnTplFilter) {
+      btnTplFilter.addEventListener('click', (e) => {
+        e.preventDefault();
+        openTemplatesModal();
+      });
+    }
+
+    const btnCloseTpl = document.getElementById('btn-close-templates');
+    if (btnCloseTpl) {
+      btnCloseTpl.addEventListener('click', closeTemplatesModal);
+    }
+
+    const modalTpl = document.getElementById('modal-templates');
+    if (modalTpl) {
+      modalTpl.addEventListener('click', (e) => {
+        if (e.target === modalTpl) closeTemplatesModal();
+      });
+    }
+
+    const btnTplEnquire = document.getElementById('btn-templates-enquire-now');
+    if (btnTplEnquire) {
+      btnTplEnquire.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeTemplatesModal();
+        setTimeout(() => {
+          openInquiryModal('templates-inquiry');
+          const notesField = document.getElementById('form-notes');
+          if (notesField && !notesField.value) {
+            notesField.value = currentLang === 'no' 
+              ? 'Forespørsel om 50+ maler. Dette ønsker jeg å skape: '
+              : 'Inquiry regarding 50+ templates. What I want to create: ';
+            notesField.focus();
+          }
+        }, 150);
+      });
+    }
 
     btnTopInquiry.addEventListener('click', () => openInquiryModal());
     btnCloseInquiry.addEventListener('click', closeInquiryModal);
@@ -892,6 +963,11 @@
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        const modalTpl = document.getElementById('modal-templates');
+        if (modalTpl && modalTpl.classList.contains('open')) {
+          closeTemplatesModal();
+          return;
+        }
         if (modalTemplates && modalTemplates.classList.contains('open')) closeTemplatesModal();
         else if (modalInquiry.classList.contains('open')) closeInquiryModal();
         else if (modalDeepdive.classList.contains('open')) closeDeepDiveModal();
