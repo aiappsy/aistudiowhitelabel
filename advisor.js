@@ -98,18 +98,17 @@
     const q = query.toLowerCase();
 
     // Specific Price & Cost Queries (Explicit Guideline Response)
-    if (q.includes("price") || q.includes("pricing") || q.includes("cost") || q.includes("how much") || q.includes("fee") || q.includes("rate") || q.includes("quote") || q.includes("charge")) {
-      return pickRandom(POSITIVE_OPENERS) + "When it comes to pricing and licensing investment, **it will depend on which tier you choose and whether there is any custom work required for your specific launch, so it is best discussed directly with us!**\n\n" +
-        "Here is how our framework is structured to fit your vision:\n\n" +
-        "🌟 **Tier 1: Non-Exclusive Turnkey Whitelabel**\n" +
-        "Ideal for rapid 48-hour launch under your brand and domain. You keep 100% of end-user MRR, while cloud infrastructure and model updates are fully managed.\n\n" +
-        "🚀 **Tier 2: Monthly Lease with 70% Equity Credit**\n" +
-        "Bootstrapper-friendly with 70% of every monthly lease credited toward full buyout. Build equity in the software while you test the market.\n\n" +
-        "👑 **Tier 3: Master Buyout & Source Code IP Transfer**\n" +
-        "Complete GitHub repository and copyright transfer with unlimited sub-licensing rights globally and zero future royalties.\n\n" +
-        "🛠️ **Custom Integrations & White-Glove Onboarding**:\n" +
-        "If you require bespoke payment gateways, specialized industry ERP bridges, custom UI themes, or proprietary AI prompts, we will tailor a package precisely around your needs.\n\n" +
-        "Would you like me to open the **Whitelabel Licensing Request form** right now so you can share your target goals and get a custom proposal?";
+    if (q.includes("price") || q.includes("pricing") || q.includes("cost") || q.includes("how much") || q.includes("fee") || q.includes("rate") || q.includes("quote") || q.includes("charge") || q.includes("skill") || q.includes("technical") || q.includes("support")) {
+      return pickRandom(POSITIVE_OPENERS) + "When it comes to pricing, **it will depend on what tier you choose and if there is any custom work required, so it needs to be discussed together!**\n\n" +
+        "Here is the best part — **you need absolutely NO technical ability, coding skills, or experience.** We take care of everything behind the scenes, including all technical support, cloud hosting, databases, and AI model evolution!\n\n" +
+        "🎁 **What is ALWAYS Included in Every Whitelabel Package**:\n" +
+        "• **100% Whitelabel Branding**: Your logo, branding, and identity.\n" +
+        "• **Your Custom Domain**: Fully configured on your chosen domain (e.g. app.yourcompany.com) with SSL.\n" +
+        "• **Dedicated Custom Hours**: Extra custom development hours are always included to personalize workflows, copywriting, or settings for your launch.\n" +
+        "• **Behind-The-Scenes Tech Management**: Full cloud hosting, 24/7 technical support, security, and edge deployments are 100% handled for you.\n\n" +
+        "💡 **Add-Ons at Very Reasonable Prices**:\n" +
+        "If you ever want extra custom integrations, special industry connections, or tailored features down the line, add-ons are available at very reasonable and accessible prices!\n\n" +
+        "Would you like me to open the **Whitelabel Licensing Request form** so we can discuss the ideal tier and custom hours for your launch?";
     }
 
     // Specific App Queries
@@ -255,6 +254,7 @@
       </div>
 
       <div class="advisor-chips-container">
+        <button class="advisor-chip-btn" data-query="Do I need technical skills?">🛠️ Zero Tech Skills Needed</button>
         <button class="advisor-chip-btn" data-query="How does licensing pricing work?">💰 Licensing Pricing</button>
         <button class="advisor-chip-btn" data-query="Tell me about Hubzzoo">⚡ Hubzzoo Opportunity</button>
         <button class="advisor-chip-btn" data-query="Explain the 3 Whitelabel Tiers">📜 Whitelabel Tiers</button>

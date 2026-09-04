@@ -96,30 +96,31 @@ const APPS_DATA = [
             tier: "Non-Exclusive Turnkey Whitelabel",
             price: "Setup: $1,490 + $290/mo SLA",
             features: [
-              "100% custom branding, your domain & logo",
+              "Zero technical skill required — we manage hosting, servers & tech support",
+              "100% custom branding, your logo & custom domain included",
+              "Dedicated custom development hours included with your launch",
               "Keep 100% of all end-user client subscription revenue",
-              "Fully managed cloud hosting, database & security patches",
-              "Launch ready in under 48 hours"
+              "Add-ons & custom modules available at very reasonable prices"
             ]
           },
           {
             tier: "Lease-to-Own License",
             price: "From $590/mo (70% Equity Credit)",
             features: [
-              "Operational control with low upfront capital",
+              "Zero technical skill required — fully managed infrastructure & support",
+              "Whitelabel, domain setup & initial custom hours always included",
               "70% of every monthly payment counts toward full code buyout",
-              "Ideal for bootstrapping an agency SaaS revenue stream",
-              "Option to purchase full exclusive rights at guaranteed valuation"
+              "Affordable add-ons available anytime for custom integrations"
             ]
           },
           {
             tier: "Full Master Buyout & IP Transfer",
             price: "Valuation upon inquiry (Source Code + IP)",
             features: [
-              "Complete GitHub repository & IP copyright transfer",
-              "Right to sub-license infinite whitelabel instances globally",
-              "Zero ongoing royalties or platform fees to any third party",
-              "Deploy on your own private cloud infrastructure"
+              "Complete GitHub repository & full source code IP copyright transfer",
+              "Includes engineering handover, architecture walkthrough & custom hours",
+              "Deploy on your own cloud or let our team handle deployment for you",
+              "Zero ongoing royalties or platform fees — unlimited sub-licensing"
             ]
           }
         ],
