@@ -2,6 +2,8 @@
 // EXPERT AI WHITELABEL ADVISOR ENGINE
 // Persona: Always positive, encouraging, deeply knowledgeable on all 7 apps,
 // market opportunities, monetization math, and BizBox whitelabel tiers.
+// Pricing Policy: Always explains that exact pricing depends on the chosen tier 
+// and whether any custom work is required, so it needs to be discussed.
 // ============================================================================
 
 (function () {
@@ -70,26 +72,6 @@
         keyFeatures: "Autonomous web research, headless browser navigation, isolated MicroVM code execution, and persistent memory across sessions.",
         encouragement: "Autonomous computer-use agents represent the cutting frontier of AI. Operating your own branded action agent studio positions you at the very forefront of the industry!"
       }
-    },
-    tiers: {
-      turnkey: {
-        name: "Tier 1: Non-Exclusive Turnkey Whitelabel",
-        cost: "Setup: $1,490 + $290/mo SLA",
-        highlights: "Launch under your own brand, custom domain, and logo in under 48 hours. Keep 100% of all end-user client MRR. BizBox handles cloud hosting, maintenance, and AI model upgrades.",
-        idealFor: "Agencies and entrepreneurs who want immediate time-to-market and instant cash flow without managing code or servers."
-      },
-      lease: {
-        name: "Tier 2: Monthly Lease with 70% Equity Credit",
-        cost: "From $590/mo",
-        highlights: "Low capital barrier with 70% of every monthly lease payment applied toward full buyout. Build equity in the software while generating operational MRR.",
-        idealFor: "Founders testing market traction who want a secure, guaranteed path to permanent ownership without risking massive upfront capital."
-      },
-      buyout: {
-        name: "Tier 3: Master Buyout & Source Code IP Transfer",
-        cost: "Valuation upon inquiry (Source Code + IP)",
-        highlights: "Complete GitHub repository and intellectual property copyright transfer. Sub-license infinite whitelabel instances globally, deploy on private cloud, and pay zero ongoing royalties.",
-        idealFor: "Established SaaS enterprises, venture-backed aggregators, or private equity groups seeking an exclusive proprietary technology asset."
-      }
     }
   };
 
@@ -102,9 +84,9 @@
   ];
 
   const ENCOURAGING_CLOSERS = [
-    "\n\nYou are in an amazing position to capitalize on this! Would you like me to open the Whitelabel Inquiry form for you?",
+    "\n\nYou are in an amazing position to capitalize on this! Would you like me to open the Whitelabel Inquiry form for you so we can tailor a proposal to your exact goals?",
     "\n\nThe timing for this market could not be better. Which licensing model feels like the right match for your goals?",
-    "\n\nI have zero doubt that with the right target audience, this can be a powerhouse revenue generator! Want to dive deeper into any specific feature?",
+    "\n\nI have zero doubt that with the right target audience, this can be a powerhouse revenue generator! Want to discuss custom workflows or specific features?",
     "\n\nEvery great SaaS empire starts with a high-leverage product like this. Let me know what questions you have next!"
   ];
 
@@ -115,8 +97,23 @@
   function generateAdvisorResponse(query) {
     const q = query.toLowerCase();
 
+    // Specific Price & Cost Queries (Explicit Guideline Response)
+    if (q.includes("price") || q.includes("pricing") || q.includes("cost") || q.includes("how much") || q.includes("fee") || q.includes("rate") || q.includes("quote") || q.includes("charge")) {
+      return pickRandom(POSITIVE_OPENERS) + "When it comes to pricing and licensing investment, **it will depend on which tier you choose and whether there is any custom work required for your specific launch, so it is best discussed directly with us!**\n\n" +
+        "Here is how our framework is structured to fit your vision:\n\n" +
+        "🌟 **Tier 1: Non-Exclusive Turnkey Whitelabel**\n" +
+        "Ideal for rapid 48-hour launch under your brand and domain. You keep 100% of end-user MRR, while cloud infrastructure and model updates are fully managed.\n\n" +
+        "🚀 **Tier 2: Monthly Lease with 70% Equity Credit**\n" +
+        "Bootstrapper-friendly with 70% of every monthly lease credited toward full buyout. Build equity in the software while you test the market.\n\n" +
+        "👑 **Tier 3: Master Buyout & Source Code IP Transfer**\n" +
+        "Complete GitHub repository and copyright transfer with unlimited sub-licensing rights globally and zero future royalties.\n\n" +
+        "🛠️ **Custom Integrations & White-Glove Onboarding**:\n" +
+        "If you require bespoke payment gateways, specialized industry ERP bridges, custom UI themes, or proprietary AI prompts, we will tailor a package precisely around your needs.\n\n" +
+        "Would you like me to open the **Whitelabel Licensing Request form** right now so you can share your target goals and get a custom proposal?";
+    }
+
     // Specific App Queries
-    if (q.includes("hubzzoo") || q.includes("hubzoo") || q.includes("crm") || q.includes("sales") || q.includes("trades") || q.includes("quote")) {
+    if (q.includes("hubzzoo") || q.includes("hubzoo") || q.includes("crm") || q.includes("sales") || q.includes("trades")) {
       const a = KNOWLEDGE.apps.hubzzoo;
       return pickRandom(POSITIVE_OPENERS) + "**" + a.name + "** is a total game-changer for service businesses and trades!\n\n" +
         "🎯 **Market Opportunity**: " + a.market + "\n\n" +
@@ -187,18 +184,18 @@
     }
 
     // Whitelabel Tiers & Models
-    if (q.includes("tier") || q.includes("license") || q.includes("model") || q.includes("lease") || q.includes("buyout") || q.includes("turnkey") || q.includes("cost") || q.includes("price")) {
+    if (q.includes("tier") || q.includes("license") || q.includes("model") || q.includes("lease") || q.includes("buyout") || q.includes("turnkey")) {
       return pickRandom(POSITIVE_OPENERS) + "The **BizBox Whitelabel Framework** was specifically designed to give operators maximum flexibility and exceptional return on investment!\n\n" +
-        "🌟 **1. Turnkey Whitelabel ($1,490 setup + $290/mo)**:\nLaunch your branded SaaS in 48 hours. Keep 100% of end-user MRR while we handle servers, AI compute, and maintenance!\n\n" +
-        "🚀 **2. Lease-to-Own License (From $590/mo)**:\nBootstrapper-friendly with **70% of every monthly lease credited toward full ownership**! Validate product-market fit while building equity.\n\n" +
+        "🌟 **1. Turnkey Whitelabel**:\nLaunch your branded SaaS in 48 hours. Keep 100% of end-user MRR while we handle servers, AI compute, and maintenance!\n\n" +
+        "🚀 **2. Lease-to-Own License**:\nBootstrapper-friendly with **70% of every monthly lease credited toward full ownership**! Validate product-market fit while building equity.\n\n" +
         "👑 **3. Master Buyout & Source Code IP**:\nComplete GitHub repository transfer, zero future platform fees, and infinite sub-licensing rights worldwide!\n\n" +
-        "Which model aligns best with your growth strategy right now?";
+        "Please note that final pricing depends on the tier chosen and any custom work required, so it is best discussed together. Which model aligns best with your growth strategy?";
     }
 
     // General Market & Earning Potential
     if (q.includes("market") || q.includes("money") || q.includes("revenue") || q.includes("mrr") || q.includes("potential") || q.includes("earn") || q.includes("margin")) {
       return pickRandom(POSITIVE_OPENERS) + "The AI SaaS whitelabel market is experiencing unprecedented demand! Operators who license ready-to-scale platforms skip 6-12 months of risky, expensive development and go straight to cash flow.\n\n" +
-        "📊 **Quick Market Math**:\n" +
+        "📊 **Illustrative Market Math**:\n" +
         "• **50 Hubzzoo clients** @ $79/mo = **$3,950 MRR** ($47k ARR)\n" +
         "• **35 MaxMotion video creators** @ $149/mo = **$5,215 MRR** ($62k ARR)\n" +
         "• **100 Upworkz freelancers** @ $49/mo = **$4,900 MRR** ($58k ARR)\n\n" +
@@ -258,7 +255,7 @@
       </div>
 
       <div class="advisor-chips-container">
-        <button class="advisor-chip-btn" data-query="Which app has the best margins?">💰 Highest Margins</button>
+        <button class="advisor-chip-btn" data-query="How does licensing pricing work?">💰 Licensing Pricing</button>
         <button class="advisor-chip-btn" data-query="Tell me about Hubzzoo">⚡ Hubzzoo Opportunity</button>
         <button class="advisor-chip-btn" data-query="Explain the 3 Whitelabel Tiers">📜 Whitelabel Tiers</button>
         <button class="advisor-chip-btn" data-query="How does Lease-to-Own work?">🔑 Lease-to-Own</button>
@@ -266,7 +263,7 @@
       </div>
 
       <div class="advisor-chat-input-bar">
-        <input type="text" id="advisor-user-input" class="advisor-input-field" placeholder="Ask about any app, pricing, or market potential..." />
+        <input type="text" id="advisor-user-input" class="advisor-input-field" placeholder="Ask about pricing, custom work, or market potential..." />
         <button id="advisor-send-btn" class="advisor-send-btn" title="Send Message">➤</button>
       </div>
     `;
