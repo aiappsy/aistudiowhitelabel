@@ -11,13 +11,13 @@
 
   const KNOWLEDGE_EN = {
     apps: {
-      hubzzoo: {
-        name: "Hubzzoo",
+      hubzoo: {
+        name: "Hubzoo",
         tagline: "Autonomous Sales Partner & CRM for SMBs",
         market: "Contractors, plumbers, electricians, marketing consultants, and SMB service providers who lose 60%+ of sales simply because they are too busy on-site to reply to leads immediately.",
         whitelabelPotential: "Enormous recurring B2B retention! Agencies charge $49-$149/mo per client. At just 40 tradesmen clients, that generates ~$3,500/mo in pure recurring revenue with virtually zero churn because it directly wins them jobs.",
         keyFeatures: "60-second mobile quote creator, multi-channel auto follow-ups across WhatsApp/SMS/Email, and direct accounting sync with Tripletex and Fiken.",
-        encouragement: "Hubzzoo is one of the highest-converting SaaS offerings you can launch because it directly puts money into business owners' pockets from day one!"
+        encouragement: "Hubzoo is one of the highest-converting SaaS offerings you can launch because it directly puts money into business owners' pockets from day one!"
       },
       maxmotion: {
         name: "MaxMotion AI",
@@ -72,13 +72,13 @@
 
   const KNOWLEDGE_NO = {
     apps: {
-      hubzzoo: {
-        name: "Hubzzoo",
+      hubzoo: {
+        name: "Hubzoo",
         tagline: "Autonom salgsassistent & CRM for håndverkere og SMB",
         market: "Håndverkere, snekkere, rørleggere, elektrikere og konsulenter som taper 60 %+ av oppdragene rett og slett fordi de er opptatt ute i felt og svarer for sent.",
         whitelabelPotential: "Ekstremt høy kundelojalitet! Norske byråer kan ta 690 – 1 490 kr/mnd per kunde. Med kun 40 lokale bedriftskunder gir det over 35 000 kr i faste månedlige inntekter (MRR).",
         keyFeatures: "60-sekunders mobilt pristilbud, automatiske påminnelser på SMS/e-post/WhatsApp og toveis integrasjon mot Fiken og Tripletex.",
-        encouragement: "Hubzzoo er et av de enkleste SaaS-produktene å selge i Norge, fordi det direkte skaffer kunden nye oppdrag fra dag én!"
+        encouragement: "Hubzoo er et av de enkleste SaaS-produktene å selge i Norge, fordi det direkte skaffer kunden nye oppdrag fra dag én!"
       },
       maxmotion: {
         name: "MaxMotion AI",
@@ -205,23 +205,23 @@
       }
     }
 
-    // Hubzzoo
-    if (q.includes("hubzzoo") || q.includes("hubzoo") || q.includes("crm") || q.includes("salg") || q.includes("sales") || q.includes("håndverk") || q.includes("fiken") || q.includes("tripletex") || q.includes("quote")) {
-      const a = K.apps.hubzzoo;
+    // Hubzoo
+    if (q.includes("hubzoo") || q.includes("hubzoo") || q.includes("crm") || q.includes("salg") || q.includes("sales") || q.includes("håndverk") || q.includes("fiken") || q.includes("tripletex") || q.includes("quote")) {
+      const a = K.apps.hubzoo;
       if (isNo) {
         return pickRandom(openers) + "**" + a.name + "** er en fantastisk løsning for håndverkere og servicenæringen!\n\n" +
           "🎯 **Markedsmulighet**: " + a.market + "\n\n" +
           "💰 **Inntjeningspotensial**: " + a.whitelabelPotential + "\n\n" +
           "⚡ **Kjernefordeler**: " + a.keyFeatures + "\n\n" +
           "💡 *Hvorfor du vil lykkes*: " + a.encouragement + "\n\n" +
-          "Vil du at jeg skal åpne lisensskjemaet for Hubzzoo?";
+          "Vil du at jeg skal åpne lisensskjemaet for Hubzoo?";
       } else {
         return pickRandom(openers) + "**" + a.name + "** is a total game-changer for service businesses and trades!\n\n" +
           "🎯 **Market Opportunity**: " + a.market + "\n\n" +
           "💰 **Whitelabel Potential**: " + a.whitelabelPotential + "\n\n" +
           "⚡ **Core Highlights**: " + a.keyFeatures + "\n\n" +
           "💡 *Why you'll succeed*: " + a.encouragement + "\n\n" +
-          "Would you like me to open the inquiry form for Hubzzoo?";
+          "Would you like me to open the inquiry form for Hubzoo?";
       }
     }
 
@@ -349,7 +349,7 @@
     if (isNo) {
       return pickRandom(openers) + "Jeg er din dedikerte AI Whitelabel-rådgiver, og jeg er her for å hjelpe deg i gang med en lønnsom programvarebedrift!\n\n" +
         "Vi har 7 produksjonstestede AI-plattformer klare til utrulling under din merkevare:\n" +
-        "• **Hubzzoo** — Salgsassistent for håndverkere (60s tilbud på mobilen & Fiken/Tripletex)\n" +
+        "• **Hubzoo** — Salgsassistent for håndverkere (60s tilbud på mobilen & Fiken/Tripletex)\n" +
         "• **MaxMotion AI** — Multi-modell generativt videostudio\n" +
         "• **MediaBunny** — Klientside medie- og lydsuite med nær 100 % fortjeneste\n" +
         "• **SubSentry** — Abonnementsvakt og 1-klikks oppsigelse\n" +
@@ -360,7 +360,7 @@
     } else {
       return pickRandom(openers) + "I am your dedicated AI Whitelabel Advisor, and I am thrilled to help you build an extraordinary software business!\n\n" +
         "We have 7 battle-tested AI platforms ready for your brand:\n" +
-        "• **Hubzzoo** — SMB Sales Agent & 60s Quotes\n" +
+        "• **Hubzoo** — SMB Sales Agent & 60s Quotes\n" +
         "• **MaxMotion AI** — Multi-Model Generative Video Studio\n" +
         "• **MediaBunny** — Zero-cloud-cost on-device media suite\n" +
         "• **SubSentry** — Subscription watchdog & cancellation shield\n" +
@@ -436,7 +436,7 @@
       <div class="advisor-chips-container">
         <button class="advisor-chip-btn" data-query="${isNo ? 'Må jeg kunne koding eller teknikk?' : 'Do I need technical skills?'}">${isNo ? '🛠️ Null teknisk krav' : '🛠️ Zero Tech Skills Needed'}</button>
         <button class="advisor-chip-btn" data-query="${isNo ? 'Hva koster lisensene og hva følger med?' : 'How does licensing pricing work?'}">${isNo ? '💰 Priser & Hva som inngår' : '💰 Licensing Pricing'}</button>
-        <button class="advisor-chip-btn" data-query="${isNo ? 'Fortell om Hubzzoo for håndverkere' : 'Tell me about Hubzzoo'}">${isNo ? '⚡ Hubzzoo' : '⚡ Hubzzoo Opportunity'}</button>
+        <button class="advisor-chip-btn" data-query="${isNo ? 'Fortell om Hubzoo for håndverkere' : 'Tell me about Hubzoo'}">${isNo ? '⚡ Hubzoo' : '⚡ Hubzoo Opportunity'}</button>
         <button class="advisor-chip-btn" data-query="${isNo ? 'Hvordan fungerer Leie-til-eie?' : 'How does Lease-to-Own work?'}">${isNo ? '🔑 Leie-til-eie' : '🔑 Lease-to-Own'}</button>
         <button class="advisor-chip-btn" data-query="${isNo ? 'Hvor mye kan jeg tjene?' : 'How much MRR can I generate?'}">${isNo ? '📈 Inntektskalkyle' : '📈 Revenue Math'}</button>
       </div>

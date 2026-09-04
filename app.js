@@ -372,7 +372,7 @@
   function renderMockupCanvas(app) {
     const isNo = currentLang === 'no';
     switch (app.id) {
-      case 'hubzzoo':
+      case 'hubzoo':
         return `
           <div class="app-ui-canvas">
             <div class="ui-hubzoo-pipeline">

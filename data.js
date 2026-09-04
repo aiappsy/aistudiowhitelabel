@@ -5,11 +5,11 @@
 
 const APPS_DATA = [
   {
-    id: "hubzzoo",
-    name: "Hubzzoo",
-    alias: "hubzzoo.ai.studio",
-    url: "https://hubzzoo.ai.studio",
-    domain: "hubzzoo.ai.studio",
+    id: "hubzoo",
+    name: "Hubzoo",
+    alias: "hubzoo.ai.studio",
+    url: "https://hubzoo.ai.studio",
+    domain: "hubzoo.ai.studio",
     category: "sales-crm",
     categoryLabel: "Sales & Autonomous CRM",
     statusBadge: "Active Production",
@@ -31,7 +31,7 @@ const APPS_DATA = [
           Most small and mid-sized business owners don't lose sales because their work isn't good enough—they lose them because they're simply too busy to reply in time. When a hot inquiry arrives on Monday and you only get around to emailing a quote on Thursday evening, that prospect has almost certainly hired your competitor.
         </p>
         <p>
-          <strong>Hubzzoo fixes the broken speed-to-lead equation.</strong> Instead of forcing you to sit down at a laptop after a long workday, Hubzzoo acts as your 24/7 digital sales assistant. It ingests new leads, prepares accurate proposals from your phone in under a minute, and nurtures every prospect with thoughtful, human-sounding follow-ups until the deal is won.
+          <strong>Hubzoo fixes the broken speed-to-lead equation.</strong> Instead of forcing you to sit down at a laptop after a long workday, Hubzoo acts as your 24/7 digital sales assistant. It ingests new leads, prepares accurate proposals from your phone in under a minute, and nurtures every prospect with thoughtful, human-sounding follow-ups until the deal is won.
         </p>
       `,
       coreFunctions: [
@@ -45,7 +45,7 @@ const APPS_DATA = [
           title: "Autonomous Multi-Channel Follow-Up",
           icon: "🤖",
           summary: "Scheduled, context-aware touchpoints via Email, WhatsApp, and SMS that keep deals alive.",
-          details: "If a client hasn't answered in 48 hours, Hubzzoo sends a friendly, natural nudge. After 5 days, it checks if they have questions."
+          details: "If a client hasn't answered in 48 hours, Hubzoo sends a friendly, natural nudge. After 5 days, it checks if they have questions."
         },
         {
           title: "Nordic Accounting & ERP Bridge",
@@ -85,7 +85,7 @@ const APPS_DATA = [
       whitelabel: {
         operatorPitch: `
           <p class="operator-lead">
-            Every marketing agency, web design shop, and IT consultant has clients in the trades, professional services, and consulting who struggle with sales admin. Offering them Hubzzoo under your own brand creates an irresistible high-retention monthly subscription.
+            Every marketing agency, web design shop, and IT consultant has clients in the trades, professional services, and consulting who struggle with sales admin. Offering them Hubzoo under your own brand creates an irresistible high-retention monthly subscription.
           </p>
           <p>
             You control the domain, the logos, and the monthly subscription rates. You charge your clients $49 to $149/month for access to their customized sales agent, while BizBox and our underlying cloud manage hosting, AI compute, and feature upgrades behind the scenes.
@@ -129,7 +129,7 @@ const APPS_DATA = [
     },
     techStack: {
       headline: "Engineered for Extreme Reliability & Frictionless Daily Use",
-      summary: "Hubzzoo is built on a resilient, modern cloud stack designed to operate silently and reliably on mobile networks, syncing effortlessly with enterprise ERPs and AI engines.",
+      summary: "Hubzoo is built on a resilient, modern cloud stack designed to operate silently and reliably on mobile networks, syncing effortlessly with enterprise ERPs and AI engines.",
       stackPills: ["Next.js 14 App Router", "TypeScript", "Tailwind CSS", "Gemini 2.5 Flash", "PostgreSQL / Prisma", "Stripe & Vipps", "Tripletex / Fiken Webhooks", "Vercel Edge"],
       durabilityPillars: [
         {
@@ -150,12 +150,12 @@ const APPS_DATA = [
         {
           title: "Clean Accounting System Decoupling",
           icon: "⚡",
-          desc: "Modular integration adapters for Nordic and international ERPs. If an external accounting API changes its spec, Hubzzoo's isolated bridge updates without disrupting core CRM workflows."
+          desc: "Modular integration adapters for Nordic and international ERPs. If an external accounting API changes its spec, Hubzoo's isolated bridge updates without disrupting core CRM workflows."
         }
       ],
       continuousEvolution: `
         <p>
-          The generative AI landscape shifts constantly. Hubzzoo's architecture uses a decoupled prompt-and-model gateway. We continually benchmark new reasoning engines (such as the latest Gemini 2.5 and 3.x series) to increase lead extraction accuracy and reduce latency.
+          The generative AI landscape shifts constantly. Hubzoo's architecture uses a decoupled prompt-and-model gateway. We continually benchmark new reasoning engines (such as the latest Gemini 2.5 and 3.x series) to increase lead extraction accuracy and reduce latency.
         </p>
         <p>
           As an operator or business user, your software stays permanently updated. Core improvements, security patches, and AI model upgrades deploy silently to the edge.

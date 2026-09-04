@@ -1,9 +1,9 @@
 const APPS_DATA_NO = [
   {
-    "id": "hubzzoo",
-    "name": "Hubzzoo",
-    "url": "https://hubzzoo.ai.studio",
-    "domain": "hubzzoo.ai.studio",
+    "id": "hubzoo",
+    "name": "Hubzoo",
+    "url": "https://hubzoo.ai.studio",
+    "domain": "hubzoo.ai.studio",
     "category": "sales-crm",
     "categoryLabel": "Salg & Autonom CRM",
     "statusBadge": "Aktiv Produksjon",
@@ -32,7 +32,7 @@ const APPS_DATA_NO = [
     "mockupType": "hubzoo-ui",
     "deepDive": {
       "headline": "Salgsmaskinen som lander oppdragene mens du er ute på byggeplassen eller i kundemøter",
-      "problemSolution": "\n        <p class=\"lead-text\">\n          De fleste små og mellomstore håndverkere og konsulenter taper ikke oppdrag fordi jobben de gjør er dårlig — de taper dem rett og slett fordi de er for opptatt til å svare raskt nok. Når en kunde sender en forespørsel på mandag og du først får tid til å sette deg ned foran PC-en torsdag kveld, har kunden for lengst valgt en konkurrent.\n        </p>\n        <p>\n          <strong>Hubzzoo snur responstiden til ditt største konkurransefortrinn.</strong> I stedet for å tvinge deg til kveldsarbeid etter en lang arbeidsdag, fungerer Hubzzoo som din personlige, døgnåpne salgsassistent. Den fanger nye henvendelser, regner ut nøyaktige pristilbud fra mobilen på under ett minutt, og følger opp hver eneste kunde med høflige, naturlige påminnelser helt til avtalen er i boks.\n        </p>\n      ",
+      "problemSolution": "\n        <p class=\"lead-text\">\n          De fleste små og mellomstore håndverkere og konsulenter taper ikke oppdrag fordi jobben de gjør er dårlig — de taper dem rett og slett fordi de er for opptatt til å svare raskt nok. Når en kunde sender en forespørsel på mandag og du først får tid til å sette deg ned foran PC-en torsdag kveld, har kunden for lengst valgt en konkurrent.\n        </p>\n        <p>\n          <strong>Hubzoo snur responstiden til ditt største konkurransefortrinn.</strong> I stedet for å tvinge deg til kveldsarbeid etter en lang arbeidsdag, fungerer Hubzoo som din personlige, døgnåpne salgsassistent. Den fanger nye henvendelser, regner ut nøyaktige pristilbud fra mobilen på under ett minutt, og følger opp hver eneste kunde med høflige, naturlige påminnelser helt til avtalen er i boks.\n        </p>\n      ",
       "coreFunctions": [
         {
           "title": "60-sekunders mobilt tilbudsverktøy",
@@ -44,7 +44,7 @@ const APPS_DATA_NO = [
           "title": "Autonom flerkanals oppfølging",
           "icon": "🤖",
           "summary": "Automatiserte, kontekstbevisste påminnelser på e-post, SMS og WhatsApp som holder tilbudet varmt.",
-          "details": "Dersom kunden ikke har svart innen 48 timer, sender Hubzzoo en vennlig påminnelse. Etter 5 dager sjekker den om det er noe kunden lurer på."
+          "details": "Dersom kunden ikke har svart innen 48 timer, sender Hubzoo en vennlig påminnelse. Etter 5 dager sjekker den om det er noe kunden lurer på."
         },
         {
           "title": "Direkte integrasjon mot Fiken & Tripletex",
@@ -82,7 +82,7 @@ const APPS_DATA_NO = [
         }
       ],
       "whitelabel": {
-        "operatorPitch": "\n          <p class=\"operator-lead\">\n            Norske markedsføringsbyråer, webdesignere og IT-konsulenter har haugevis av kunder i håndverker- og servicenæringen som sliter med salgsadministrasjon. Ved å tilby dem Hubzzoo under ditt eget byrånavn, skaper du en umiddelbar og stabil månedlig abonnementsinntekt.\n          </p>\n          <p>\n            Du eier kundeforholdet, ditt eget domene, logo og setter månedsprisen selv (f.eks. 690 – 1 490 kr/mnd per bedrift). BizBox håndterer skydrift, servere, AI-kostnader og teknisk support for deg i kulissene.\n          </p>\n        ",
+        "operatorPitch": "\n          <p class=\"operator-lead\">\n            Norske markedsføringsbyråer, webdesignere og IT-konsulenter har haugevis av kunder i håndverker- og servicenæringen som sliter med salgsadministrasjon. Ved å tilby dem Hubzoo under ditt eget byrånavn, skaper du en umiddelbar og stabil månedlig abonnementsinntekt.\n          </p>\n          <p>\n            Du eier kundeforholdet, ditt eget domene, logo og setter månedsprisen selv (f.eks. 690 – 1 490 kr/mnd per bedrift). BizBox håndterer skydrift, servere, AI-kostnader og teknisk support for deg i kulissene.\n          </p>\n        ",
         "models": [
           {
             "tier": "Nøkkelferdig Whitelabel (Turnkey)",
@@ -121,7 +121,7 @@ const APPS_DATA_NO = [
     },
     "techStack": {
       "headline": "Utviklet for maksimal oppetid, mobilytelse og lynrask respons",
-      "summary": "Hubzzoo er bygget på en moderne, lynrask skyarkitektur optimalisert for ustabile 4G/5G-forbindelser ute på byggeplasser, og integrerer direkte mot norske ERP- og betalingsløsninger.",
+      "summary": "Hubzoo er bygget på en moderne, lynrask skyarkitektur optimalisert for ustabile 4G/5G-forbindelser ute på byggeplasser, og integrerer direkte mot norske ERP- og betalingsløsninger.",
       "stackPills": [
         "Next.js 14 App Router",
         "TypeScript",
@@ -154,7 +154,7 @@ const APPS_DATA_NO = [
           "desc": "Modulære adaptere for Fiken og Tripletex. Skulle et eksternt regnskapssystem endre sitt API, oppdateres modulen isolert uten å påvirke resten av CRM-et."
         }
       ],
-      "continuousEvolution": "\n        <p>\n          AI-utviklingen går i rekordfart. Hubzzoo benytter en fleksibel modell-gateway der vi kontinuerlig kobler på de råeste resonneringsmodellene (som den ferske Gemini 2.5 Flash) for lynrask tolking og null ventetid.\n        </p>\n        <p>\n          Som operatør trenger du ikke å røre en linje kode. Sikkerhetsoppdateringer, forbedringer og nye AI-modeller rulles ut helt automatisk i kulissene.\n        </p>\n      "
+      "continuousEvolution": "\n        <p>\n          AI-utviklingen går i rekordfart. Hubzoo benytter en fleksibel modell-gateway der vi kontinuerlig kobler på de råeste resonneringsmodellene (som den ferske Gemini 2.5 Flash) for lynrask tolking og null ventetid.\n        </p>\n        <p>\n          Som operatør trenger du ikke å røre en linje kode. Sikkerhetsoppdateringer, forbedringer og nye AI-modeller rulles ut helt automatisk i kulissene.\n        </p>\n      "
     }
   },
   {
