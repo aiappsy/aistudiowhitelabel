@@ -944,7 +944,7 @@
         currentLang === 'no' ? 'Målgruppe og lanseringsmål:' : 'Audience & Launch Goals:',
         notes ? notes : (currentLang === 'no' ? '(Ingen oppgitt)' : '(None provided)'),
         '----------------------------------------',
-        'Sent via AI SaaS Whitelabel Showcase Portal'
+        'Sent via portfolio.ai.studio Whitelabel Showcase'
       ];
 
       const mailtoUrl = `mailto:paljuritzen@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
