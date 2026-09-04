@@ -67,6 +67,22 @@
       lblNameCompany: 'Your Name & Company',
       lblWorkEmail: 'Work Email',
       lblWhereFound: 'Where did you find us?',
+      templatesTab: 'Templates',
+      templatesFilterBtn: 'Templates (50+)',
+      templatesModalTitle: 'Templates & Custom Solutions',
+      templatesModalSub: 'Over 50 other architectures available upon inquiry',
+      templatesBadge: '✨ 50+ OTHER TEMPLATES AVAILABLE',
+      templatesHeadline: 'Can\'t find any apps of interest? We have more than 50 other templates ready to be tailored to you.',
+      templatesIntroP1: 'If you cannot find any apps of interest among the ones currently displayed, we have <strong>more than 50 other templates that are not currently online</strong>.',
+      templatesIntroP2: 'These can be set up with your own requirements in a short time to accommodate exactly what you want to create.',
+      tplPill1: 'Zero technical skills needed',
+      tplPill2: '100% your own brand & domain',
+      tplPill3: 'Fast setup to your specs',
+      tplPill4: 'Hosting & tech support handled',
+      tplInqTitle: 'Inquire About Our 50+ Templates',
+      tplInqDesc: 'Tell us a few words about what you want to create or the industry you are targeting. We will match your requirements with our private template repository and get back to you with exact options.',
+      tplBtnEnquireText: 'Enquire About Templates',
+      customTemplateOpt: '📁 Templates (50+ Offline Library / Custom Build)',
       optSelectSource: 'Please select an option...',
       sourceOptions: [
         { value: '', text: 'Please select an option...', disabled: true },
@@ -140,6 +156,22 @@
       lblNameCompany: 'Ditt navn og eventuelt firmanavn',
       lblWorkEmail: 'Arbeids-e-post',
       lblWhereFound: 'Hvor hørte du om oss?',
+      templatesTab: 'Maler',
+      templatesFilterBtn: 'Maler (50+)',
+      templatesModalTitle: 'Maler & Skreddersøm',
+      templatesModalSub: 'Over 50 andre arkitekturer tilgjengelig ved forespørsel',
+      templatesBadge: '✨ OVER 50 ANDRE MALER TILGJENGELIG',
+      templatesHeadline: 'Finner du ingen apper av interesse? Vi har over 50 andre maler klare til å tilpasses deg.',
+      templatesIntroP1: 'Finner du ingen apper av interesse blant de som vises her? Vi har <strong>over 50 andre maler som for øyeblikket ikke ligger på nett</strong>.',
+      templatesIntroP2: 'Disse kan settes opp og tilpasses etter dine nøyaktige krav på kort tid, slik at du får akkurat det du ønsker å skape.',
+      tplPill1: 'Null teknisk kompetanse nødvendig',
+      tplPill2: '100 % ditt eget navn og domene',
+      tplPill3: 'Raskt oppsett etter dine krav',
+      tplPill4: 'Full drift & tech support inkludert',
+      tplInqTitle: 'Forespørsel om våre 50+ maler',
+      tplInqDesc: 'Fortell oss litt om hva du ønsker å skape eller hvilken bransje du sikter mot. Vi finner den rette malen i vårt arkiv og tar kontakt med konkrete forslag.',
+      tplBtnEnquireText: 'Send forespørsel om maler',
+      customTemplateOpt: '📁 Maler (50+ i arkivet / Skreddersøm)',
       optSelectSource: 'Vennligst velg et alternativ...',
       sourceOptions: [
         { value: '', text: 'Vennligst velg et alternativ...', disabled: true },
@@ -199,6 +231,13 @@
   const md2ChipsList = document.getElementById('md2-chips-list');
   const md2DurabilityGrid = document.getElementById('md2-durability-grid');
   const md2EvolutionText = document.getElementById('md2-evolution-text');
+
+  // Modal: Templates Inquiry
+  const modalTemplates = document.getElementById('modal-templates');
+  const btnCloseTemplates = document.getElementById('btn-close-templates');
+  const btnTemplatesTab = document.getElementById('btn-templates-tab');
+  const filterBtnTemplates = document.getElementById('filter-btn-templates');
+  const btnTemplatesEnquireNow = document.getElementById('btn-templates-enquire-now');
 
   // Modal 3: Inquiry
   const modalInquiry = document.getElementById('modal-inquiry');
@@ -358,6 +397,52 @@
         sourceSelect.appendChild(optEl);
       });
     }
+
+    // Templates elements translation
+    const txtHeaderTemplates = document.getElementById('txt-header-templates');
+    if (txtHeaderTemplates) txtHeaderTemplates.textContent = s.templatesTab;
+
+    const txtFilterTemplates = document.getElementById('txt-filter-templates');
+    if (txtFilterTemplates) txtFilterTemplates.textContent = s.templatesFilterBtn;
+
+    const tplTitle = document.getElementById('tpl-modal-title');
+    if (tplTitle) tplTitle.textContent = s.templatesModalTitle;
+
+    const tplSub = document.getElementById('tpl-modal-sub');
+    if (tplSub) tplSub.textContent = s.templatesModalSub;
+
+    const tplBadge = document.getElementById('tpl-badge');
+    if (tplBadge) tplBadge.textContent = s.templatesBadge;
+
+    const tplHeadline = document.getElementById('tpl-headline');
+    if (tplHeadline) tplHeadline.textContent = s.templatesHeadline;
+
+    const tplIntroP1 = document.getElementById('tpl-intro-p1');
+    if (tplIntroP1) tplIntroP1.innerHTML = s.templatesIntroP1;
+
+    const tplIntroP2 = document.getElementById('tpl-intro-p2');
+    if (tplIntroP2) tplIntroP2.textContent = s.templatesIntroP2;
+
+    const tplPill1 = document.getElementById('tpl-pill1');
+    if (tplPill1) tplPill1.textContent = s.tplPill1;
+    const tplPill2 = document.getElementById('tpl-pill2');
+    if (tplPill2) tplPill2.textContent = s.tplPill2;
+    const tplPill3 = document.getElementById('tpl-pill3');
+    if (tplPill3) tplPill3.textContent = s.tplPill3;
+    const tplPill4 = document.getElementById('tpl-pill4');
+    if (tplPill4) tplPill4.textContent = s.tplPill4;
+
+    const tplInqTitle = document.getElementById('tpl-inq-title');
+    if (tplInqTitle) tplInqTitle.textContent = s.tplInqTitle;
+
+    const tplInqDesc = document.getElementById('tpl-inq-desc');
+    if (tplInqDesc) tplInqDesc.textContent = s.tplInqDesc;
+
+    const tplBtnEnquireText = document.getElementById('tpl-btn-enquire-text');
+    if (tplBtnEnquireText) tplBtnEnquireText.textContent = s.tplBtnEnquireText;
+
+    const optTemplatesInquiry = document.getElementById('opt-templates-inquiry');
+    if (optTemplatesInquiry) optTemplatesInquiry.textContent = s.customTemplateOpt;
 
     const notesArea = document.getElementById('form-notes');
     if (notesArea) notesArea.placeholder = s.phNotes;
@@ -807,7 +892,8 @@
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (modalInquiry.classList.contains('open')) closeInquiryModal();
+        if (modalTemplates && modalTemplates.classList.contains('open')) closeTemplatesModal();
+        else if (modalInquiry.classList.contains('open')) closeInquiryModal();
         else if (modalDeepdive.classList.contains('open')) closeDeepDiveModal();
         else if (modalTechstack.classList.contains('open')) closeTechStackModal();
       }

@@ -184,6 +184,27 @@
       }
     }
 
+    // Templates (50+ offline maler - kun ved forespørsel)
+    if (q.includes("template") || q.includes("mal") || q.includes("maler") || q.includes("andre apper") || q.includes("other apps") || q.includes("skreddersøm") || q.includes("custom")) {
+      if (isNo) {
+        return pickRandom(openers) + "Finner du ingen apper av interesse blant de som vises her? **Vi har over 50 andre maler som for øyeblikket ikke ligger på nett.**\n\n" +
+          "Disse ligger ikke fritt tilgjengelig, men **kan settes opp og tilpasses etter dine nøyaktige krav på kort tid**, slik at du får akkurat det du ønsker å skape!\n\n" +
+          "Som alltid gjelder våre faste garantier:\n" +
+          "• **Null teknisk kompetanse nødvendig**: Vi tar hånd om alt det tekniske, inkludert drift, hosting, eget domene og teknisk support.\n" +
+          "• **100 % din egen merkevare**: Tilpasses med din logo og din profil.\n" +
+          "• **Skreddersøm på kort tid**: Vi setter opp arkitekturen nøyaktig slik du vil ha den.\n\n" +
+          "For å få tilgang til eller høre mer om disse malene må man sende en forespørsel. Vil du at jeg skal åpne **forespørselsskjemaet for maler** nå, så kan du fortelle hva du ønsker å skape?";
+      } else {
+        return pickRandom(openers) + "If you cannot find any apps of interest among those displayed, **we have more than 50 other templates that are not currently online!**\n\n" +
+          "These templates are not publicly browsable, but **they can be set up with your own requirements in a short time to accommodate exactly what you want to create.**\n\n" +
+          "Our standard turnkey promises always apply:\n" +
+          "• **Zero technical ability needed**: We handle everything behind the scenes, including hosting, servers, custom domain, and full tech support.\n" +
+          "• **100% Turnkey Whitelabel**: Delivered under your company branding.\n" +
+          "• **Fast turnaround**: Configured to your exact specifications in days.\n\n" +
+          "To access or learn more about these templates, you simply need to inquire. Would you like me to open the **Templates Inquiry Form** so you can describe what you want to create?";
+      }
+    }
+
     // Agenturer.no / Agentur / Forhandler
     if (q.includes("agentur") || q.includes("agenturer") || q.includes("forhandler") || q.includes("partner") || q.includes("distribusjon")) {
       if (isNo) {

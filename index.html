@@ -25,6 +25,10 @@
       </a>
 
       <div class="header-actions">
+        <button class="btn-header-templates" id="btn-templates-tab" title="Templates / Maler (50+)">
+          <span>📁</span>
+          <span id="txt-header-templates">Templates</span>
+        </button>
         <button class="lang-switch-btn" id="btn-lang-toggle" title="Bytt til norsk / Switch to English">
           <span class="lang-flag" id="lang-flag">🇳🇴</span>
           <span class="lang-label" id="lang-label">Norsk</span>
@@ -105,6 +109,7 @@
         <button class="filter-btn" data-cat="media-video">AI Video & Media</button>
         <button class="filter-btn" data-cat="saas-finance">SaaS & FinTech</button>
         <button class="filter-btn" data-cat="autonomous-agents">Autonomous Agents</button>
+        <button class="filter-btn filter-btn-templates" id="filter-btn-templates"><span>📁</span> <span id="txt-filter-templates">Templates (50+)</span></button>
       </nav>
     </section>
 
@@ -254,6 +259,7 @@
           <div class="form-group-item">
             <label for="form-app-select">Target Platform</label>
             <select id="form-app-select" class="form-field">
+              <option value="templates-inquiry" id="opt-templates-inquiry">📁 Templates (50+ Offline Library / Custom Build)</option>
               <option value="hubzoo">Hubzoo (AI Sales Agent & CRM)</option>
               <option value="maxmotion">MaxMotion AI (Multi-Model Video Studio)</option>
               <option value="mediabunny">MediaBunny (AI Media & Audio Suite)</option>
@@ -317,5 +323,58 @@
   <script src="data_no.js"></script>
   <script src="app.js"></script>
   <script src="advisor.js"></script>
+
+  <!-- ========================================================================
+       MODAL: TEMPLATES (50+ Offline Templates Inquiry)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modal-templates" aria-hidden="true">
+    <div class="modal-container modal-templates-container" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-header-icon" style="background: rgba(99, 102, 241, 0.12); color: #6366f1;">📁</div>
+          <div class="modal-header-title">
+            <h3 id="tpl-modal-title">Templates & Custom Solutions</h3>
+            <p id="tpl-modal-sub">Over 50 other architectures available upon inquiry</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btn-close-templates" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding: 2rem;">
+        <div class="templates-explanation-card">
+          <div class="templates-badge" id="tpl-badge">✨ 50+ OTHER TEMPLATES AVAILABLE</div>
+          <h4 id="tpl-headline" class="tpl-main-headline">
+            Can't find any apps of interest? We have more than 50 other templates ready to be tailored to you.
+          </h4>
+          <p id="tpl-intro-p1" class="tpl-intro-text">
+            If you cannot find any apps of interest among the ones currently displayed, we have <strong>more than 50 other templates that are not currently online</strong>.
+          </p>
+          <p id="tpl-intro-p2" class="tpl-intro-text" style="margin-top: 0.85rem;">
+            These can be set up with your own requirements in a short time to accommodate exactly what you want to create.
+          </p>
+
+          <div class="tpl-guarantees-inline">
+            <div class="tpl-g-pill"><span>✓</span> <span id="tpl-pill1">Zero technical skills needed</span></div>
+            <div class="tpl-g-pill"><span>✓</span> <span id="tpl-pill2">100% your own brand & domain</span></div>
+            <div class="tpl-g-pill"><span>✓</span> <span id="tpl-pill3">Fast setup to your specs</span></div>
+            <div class="tpl-g-pill"><span>✓</span> <span id="tpl-pill4">Hosting & tech support handled</span></div>
+          </div>
+        </div>
+
+        <!-- Direct Inquiry Prompt / Action -->
+        <div class="tpl-inquire-action-box">
+          <div class="tpl-inquire-text">
+            <h5 id="tpl-inq-title">Inquire About Our 50+ Templates</h5>
+            <p id="tpl-inq-desc">Tell us a few words about what you want to create or the industry you are targeting. We will match your requirements with our private template repository and get back to you with exact options.</p>
+          </div>
+          <button class="btn-card-action btn-learn-more" id="btn-templates-enquire-now" style="padding: 0.85rem 1.6rem; font-size: 0.92rem;">
+            <span>✉️</span>
+            <span id="tpl-btn-enquire-text">Enquire About Templates</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
