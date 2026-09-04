@@ -68,6 +68,17 @@
       lblWorkEmail: 'Work Email',
       lblWhereFound: 'Where did you find us?',
       optSelectSource: 'Please select an option...',
+      sourceOptions: [
+        { value: '', text: 'Please select an option...', disabled: true },
+        { value: 'Agenturer.no', text: 'Agenturer.no' },
+        { value: 'Google / Web Search', text: 'Google / Web Search' },
+        { value: 'LinkedIn', text: 'LinkedIn' },
+        { value: 'Twitter / X', text: 'Twitter / X' },
+        { value: 'AI Studio / Google AI Showcase', text: 'AI Studio / Google AI Showcase' },
+        { value: 'Direct Referral / Recommendation', text: 'Direct Referral / Recommendation' },
+        { value: 'SaaS Directory / Product Hunt', text: 'SaaS Directory / Product Hunt' },
+        { value: 'Other', text: 'Other' }
+      ],
       lblNotes: 'Audience or Target Launch Goals',
       phNotes: 'Tell us about your client base, existing agency traffic, or specific integrations...',
       btnSubmitInquiry: 'Request Whitelabel Prospectus',
@@ -130,6 +141,16 @@
       lblWorkEmail: 'Arbeids-e-post',
       lblWhereFound: 'Hvor hørte du om oss?',
       optSelectSource: 'Vennligst velg et alternativ...',
+      sourceOptions: [
+        { value: '', text: 'Vennligst velg et alternativ...', disabled: true },
+        { value: 'Agenturer.no', text: 'Agenturer.no' },
+        { value: 'Google / Nettsøk', text: 'Google / Nettsøk' },
+        { value: 'LinkedIn', text: 'LinkedIn' },
+        { value: 'Twitter / X', text: 'Twitter / X' },
+        { value: 'Direkte anbefaling / Referanse', text: 'Direkte anbefaling / Referanse' },
+        { value: 'AI Studio / Google AI Showcase', text: 'AI Studio / Google AI Showcase' },
+        { value: 'Bransjekatalog / Annet', text: 'Bransjekatalog / Annet' }
+      ],
       lblNotes: 'Hvem er målgruppen din eller hva er lanseringsplanen?',
       phNotes: 'Fortell gjerne litt om bransjen du jobber mot, eksisterende kundebase eller spesielle ønsker...',
       btnSubmitInquiry: 'Send uforpliktende forespørsel',
@@ -323,8 +344,19 @@
     }
 
     const sourceSelect = document.getElementById('form-source');
-    if (sourceSelect && sourceSelect.options.length > 0) {
-      sourceSelect.options[0].textContent = s.optSelectSource;
+    if (sourceSelect && s.sourceOptions) {
+      const currentVal = sourceSelect.value;
+      sourceSelect.innerHTML = '';
+      s.sourceOptions.forEach((opt, idx) => {
+        const optEl = document.createElement('option');
+        optEl.value = opt.value;
+        optEl.textContent = opt.text;
+        if (opt.disabled) optEl.disabled = true;
+        if (opt.value === currentVal || (!currentVal && idx === 0)) {
+          optEl.selected = true;
+        }
+        sourceSelect.appendChild(optEl);
+      });
     }
 
     const notesArea = document.getElementById('form-notes');

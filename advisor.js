@@ -184,6 +184,27 @@
       }
     }
 
+    // Agenturer.no / Agentur / Forhandler
+    if (q.includes("agentur") || q.includes("agenturer") || q.includes("forhandler") || q.includes("partner") || q.includes("distribusjon")) {
+      if (isNo) {
+        return pickRandom(openers) + "Så fantastisk at du fant oss via **Agenturer.no** (eller vurderer et agentur/forhandlerskap)!\n\n" +
+          "Dette er en skreddersydd mulighet for deg som vil representere moderne KI-verktøy for det norske eller nordiske markedet:\n" +
+          "• **100 % nøkkelferdig agentur / white-label**: Du kan opptre som lisenshaver eller forhandler under ditt eget merkenavn, eller distribuere løsningene til din eksisterende kundebase.\n" +
+          "• **Ingen teknisk erfaring påkrevd**: Vi drifter servere, skymiljøer, databaser, oppdateringer og teknisk support 100 % for deg.\n" +
+          "• **Solid inntjening (MRR)**: Du beholder opptil 100 % av de faste månedlige abonnementsinntektene.\n" +
+          "• **Eget domene og tilpasningstimer inkludert**: Alt settes opp klart på din egen adresse (f.eks. app.dinbedrift.no), med inkluderte konsulenttimer til tilpasning.\n\n" +
+          "Vil du at jeg skal åpne **lisens- og agenturskjemaet** nå, så kan vi se på den mest lønnsomme modellen for deg?";
+      } else {
+        return pickRandom(openers) + "Fantastic that you discovered us via **Agenturer.no** (or are exploring an agency / reseller partnership)!\n\n" +
+          "This is an incredible opportunity to operate and distribute cutting-edge AI SaaS platforms in your market:\n" +
+          "• **100% Turnkey Whitelabel Agency**: Rebrand completely under your own company name or sell into your existing client network.\n" +
+          "• **Zero Technical Experience Needed**: We manage all cloud hosting, databases, technical support, and AI model upgrades for you.\n" +
+          "• **High Recurring Profit Margins**: Keep up to 100% of the recurring monthly subscription revenue (MRR).\n" +
+          "• **Custom Domain & Onboarding Hours Included**: Configured on your domain with included developer hours for customization.\n\n" +
+          "Would you like me to open the **Licensing & Agency Request Form** so we can discuss the optimal partnership structure for you?";
+      }
+    }
+
     // Hubzzoo
     if (q.includes("hubzzoo") || q.includes("hubzoo") || q.includes("crm") || q.includes("salg") || q.includes("sales") || q.includes("håndverk") || q.includes("fiken") || q.includes("tripletex") || q.includes("quote")) {
       const a = K.apps.hubzzoo;
